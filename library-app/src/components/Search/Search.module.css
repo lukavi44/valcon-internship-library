@@ -1,0 +1,17 @@
+.search-holder {
+  width: 100%;
+  display: flex;
+}
+.input {
+  width: 100%;
+  padding: 1rem;
+}
+.search-btn {
+  background: none;
+  border: none;
+  margin-left: -30px;
+  padding: 0;
+}
+.search-img {
+  height: 20px;
+}
