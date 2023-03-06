@@ -1,7 +1,11 @@
-.app {
-  text-align: center;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+@media only screen and (min-width: 420px) {
+  .wrapp {
+    display: flex;
+    flex-direction: row;
+    overflow: scroll;
+    height: 100vh;
+  }
+}
+.inside-wrapp {
+  width: 100%;
 }

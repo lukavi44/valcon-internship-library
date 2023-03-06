@@ -1,8 +1,13 @@
 import Card from '../../UI/Card'
-import styles from './BooksItem.module.css'
-
+import book1 from '../../../assets/placeholderImg/book1.png'
 const BooksItem = () => {
-  return <Card></Card>
+  return (
+    <Card>
+      <a href=''>
+        <img src={book1} alt='' />
+      </a>
+    </Card>
+  )
 }
 
 export default BooksItem

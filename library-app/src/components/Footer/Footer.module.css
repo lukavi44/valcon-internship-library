@@ -3,8 +3,11 @@
   justify-content: space-evenly;
   align-items: center;
   min-width: 100%;
+  padding: 0 !important;
   height: 100px;
   background: beige;
+  bottom: 0;
+  position: sticky;
 }
 .button {
   background: none;
@@ -21,4 +24,27 @@
 }
 .btn-holder:active {
   background-color: orange;
+}
+.sidebar {
+  position: absolute;
+  z-index: 99;
+  background-color: rgb(152, 107, 89);
+  right: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+.list {
+  flex: 2;
+  list-style: none;
+}
+.back-btn {
+  height: 100%;
+  width: 100%;
+}
+
+@media screen and (min-width: 420px) {
+  .footer {
+    display: none;
+  }
 }

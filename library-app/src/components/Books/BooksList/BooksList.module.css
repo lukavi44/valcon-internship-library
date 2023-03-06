@@ -1,0 +1,19 @@
+.wrapp {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+@media only screen and (min-width: 420px) {
+  .wrapp {
+    margin-top: 0;
+
+    justify-content: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}

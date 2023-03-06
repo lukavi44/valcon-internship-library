@@ -1,5 +1,29 @@
-@media only screen and (max-width: 420px) {
+.header {
+  display: none;
+}
+@media only screen and (min-width: 420px) {
   .header {
-    display: none;
+    background-color: brown;
+    width: 230px;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  .btn-holder {
+    padding: 2rem 0;
+    border-bottom: 2px solid black;
+  }
+  .btn-holder:active {
+    background-color: orange;
+  }
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+  }
+  .list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
   }
 }
