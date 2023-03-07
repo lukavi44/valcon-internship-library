@@ -21,7 +21,10 @@ const Search = () => {
 
   return (
     <React.Fragment>
-      <div className={styles['search-holder']} style={{ display: isVisible ? 'flex' : '' }}>
+      <div
+        className={styles['search-holder']}
+        style={{ visibility: isVisible ? 'visible' : 'hidden' }}
+      >
         <input type='search' name='search' id='search' className={styles.input} />
         <button className={styles['search-btn']}>
           <img src={search} alt='' className={styles['search-img']} />
