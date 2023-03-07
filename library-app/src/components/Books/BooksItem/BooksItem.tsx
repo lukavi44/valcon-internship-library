@@ -4,9 +4,11 @@ import styles from './BooksItem.module.css'
 const BooksItem = () => {
   return (
     <Card>
-      <a href=''>
-        <img src={book1} alt='' className={styles.img} />
-      </a>
+      <div className='book-holder'>
+        <a href=''>
+          <img src={book1} alt='' className={styles.img} />
+        </a>
+      </div>
     </Card>
   )
 }

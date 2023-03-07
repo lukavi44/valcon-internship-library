@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import search from '../../assets/icons/search.png'
 import styles from './Header.module.css'
 import sort from '../../assets/icons/sort.png'
+import { Link } from 'react-router-dom'
 
 const Header = () => {
   const [position, setPosition] = useState(window.scrollY)
@@ -32,6 +33,11 @@ const Header = () => {
         <button className={styles.sort}>
           <img src={sort} alt='' />
         </button>
+        <Link to='login'>
+          <button className={styles['login-btn']} type='submit'>
+            Login/Logout
+          </button>
+        </Link>
       </header>
     </React.Fragment>
   )

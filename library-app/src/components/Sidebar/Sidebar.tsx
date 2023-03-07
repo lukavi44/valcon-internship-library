@@ -4,7 +4,7 @@ import home from '../../assets/icons/home.png'
 import account from '../../assets/icons/account.png' // loader comp za slike
 import showMore from '../../assets/icons/showMore.png'
 
-const Sidebar = () => {
+const Sidebar = (props: any) => {
   const [adminOptions, setAdminOptions] = useState(false)
 
   return (

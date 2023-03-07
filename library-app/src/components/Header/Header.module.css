@@ -10,9 +10,11 @@
   top: 0;
 }
 .input {
-  width: 60%;
   padding: 1rem;
   border-radius: 2rem;
+}
+.input:focus {
+  width: 100%;
 }
 .search-btn {
   background: none;
@@ -25,4 +27,16 @@
 }
 .sort {
   margin-left: 2rem;
+}
+.login-btn {
+  height: 100%;
+}
+
+@media screen and (min-width: 426px) {
+  .input {
+    width: 40%;
+  }
+  .input:focus {
+    width: 70%;
+  }
 }
