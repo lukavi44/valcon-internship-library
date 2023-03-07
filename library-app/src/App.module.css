@@ -1,11 +1,8 @@
-@media only screen and (min-width: 420px) {
+@media only screen and (min-width: 426px) {
   .wrapp {
     display: flex;
     flex-direction: row;
-    overflow: scroll;
+    /* overflow: scroll; */
     height: 100vh;
   }
-}
-.inside-wrapp {
-  width: 100%;
 }

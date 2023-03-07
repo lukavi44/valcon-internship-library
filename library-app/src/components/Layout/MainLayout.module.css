@@ -2,6 +2,7 @@
   flex-direction: column;
   display: flex;
   align-items: center;
+  width: 100%;
 }
 .children {
   flex-direction: column;
@@ -10,12 +11,20 @@
   overflow: auto;
   display: flex;
   width: 100%;
+  padding: 2rem;
+}
+.inside-wrapp {
+  width: 100%;
 }
 
-@media only screen and (min-width: 420px) {
+@media only screen and (min-width: 426px) {
   .wrapp {
-    padding: 2rem;
+    flex-direction: row;
   }
   .children {
+  }
+  .inside-wrapp {
+    height: 100%;
+    overflow: auto;
   }
 }

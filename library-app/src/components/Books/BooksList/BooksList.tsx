@@ -9,6 +9,10 @@ const BooksList = () => {
       <BooksItem />
       <BooksItem />
       <BooksItem />
+      <BooksItem />
+      <BooksItem />
+      <BooksItem />
+      <BooksItem />
     </div>
   )
 }

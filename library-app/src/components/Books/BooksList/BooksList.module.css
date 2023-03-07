@@ -5,15 +5,13 @@
   align-items: center;
   width: 100%;
   gap: 1rem;
-  margin-top: 1rem;
 }
 
-@media only screen and (min-width: 420px) {
+@media only screen and (min-width: 426px) {
   .wrapp {
-    margin-top: 0;
-
-    justify-content: flex-start;
+    justify-content: space-evenly;
     flex-direction: row;
     flex-wrap: wrap;
+    gap: 2rem;
   }
 }

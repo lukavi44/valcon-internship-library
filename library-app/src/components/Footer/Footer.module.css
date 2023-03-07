@@ -43,7 +43,7 @@
   width: 100%;
 }
 
-@media screen and (min-width: 420px) {
+@media screen and (min-width: 426px) {
   .footer {
     display: none;
   }
