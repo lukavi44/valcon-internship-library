@@ -7,8 +7,7 @@ export interface IMainLayout {
   children: React.ReactNode
 }
 
-// eslint-disable-next-line react/prop-types
-const MainLayout: React.FC<IMainLayout> = ({ children }) => {
+const MainLayout: React.FC<IMainLayout> = ({ children }: React.PropsWithChildren<IMainLayout>) => {
   return (
     <div className={styles.wrapp}>
       <Sidebar />

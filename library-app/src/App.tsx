@@ -4,7 +4,7 @@ import { Route, Routes } from 'react-router-dom'
 
 function App() {
   return (
-    <div className={styles.wrapp}>
+    <div className={styles['app-wrapper']}>
       <Routes>
         <Route path='/' element={<Homepage />} />
       </Routes>

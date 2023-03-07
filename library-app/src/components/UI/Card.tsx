@@ -4,8 +4,7 @@ export interface ICard {
   children: React.ReactNode
 }
 
-// eslint-disable-next-line react/prop-types
-const Card = ({ children }: any) => {
+const Card = ({ children }: React.PropsWithChildren<ICard>) => {
   return <div className={styles.card}>{children}</div>
 }
 
