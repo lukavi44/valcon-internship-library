@@ -1,47 +1,38 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import search from '../../assets/icons/search.png'
 import styles from './Header.module.css'
-import home from '../../assets/icons/home.png'
-import account from '../../assets/icons/account.png' // loader comp za slike
-import showMore from '../../assets/icons/showMore.png'
+import sort from '../../assets/icons/sort.png'
 
 const Header = () => {
-  const [adminOptions, setAdminOptions] = useState(false)
+  const [position, setPosition] = useState(window.scrollY)
+  const [isVisible, setIsVisible] = useState(true)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const moving = window.scrollY
+      setIsVisible(position > moving)
+      setPosition(moving)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [position, isVisible])
 
   return (
     <React.Fragment>
-      <nav className={styles.header}>
-        <div className={styles['btn-holder']}>
-          <a className={styles.a}>
-            <img src={home} alt='' />
-          </a>
-        </div>
-        <div className={styles['btn-holder']}>
-          <a className={styles.a}>
-            <img src={account} alt='' />
-          </a>
-        </div>
-
-        <div className={styles['btn-holder']} onClick={() => setAdminOptions(!adminOptions)}>
-          <a className={styles.a}>
-            <img src={showMore} alt='' />
-          </a>
-        </div>
-
-        {adminOptions && (
-          <nav className={styles.sidebar}>
-            <div className={styles['btn-holder']}>
-              <a className={styles.a}>
-                <img src={account} alt='admin option1' />
-              </a>
-            </div>
-            <div className={styles['btn-holder']}>
-              <a className={styles.a}>
-                <img src={account} alt='admin option2' />
-              </a>
-            </div>
-          </nav>
-        )}
-      </nav>
+      <header
+        className={styles['search-holder']}
+        style={{ visibility: isVisible ? 'visible' : 'hidden' }}
+      >
+        <input type='search' name='search' id='search' className={styles.input} />
+        <button className={styles['search-btn']}>
+          <img src={search} alt='' className={styles['search-img']} />
+        </button>
+        <button className={styles.sort}>
+          <img src={sort} alt='' />
+        </button>
+      </header>
     </React.Fragment>
   )
 }

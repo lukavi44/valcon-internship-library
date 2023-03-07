@@ -1,29 +1,28 @@
-.header {
-  display: none;
+.search-holder {
+  width: 100%;
+  display: flex;
+  background-color: rgb(198, 196, 167);
+  padding: 29px 0;
+  justify-content: center;
+  gap: 1rem;
+  border-bottom: 2px solid black;
+  position: sticky;
+  top: 0;
 }
-@media only screen and (min-width: 426px) {
-  .header {
-    background-color: brown;
-    width: 230px;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-  }
-  .btn-holder {
-    padding: 2rem 0;
-    border-bottom: 2px solid black;
-  }
-  .btn-holder:active {
-    background-color: orange;
-  }
-  .sidebar {
-    display: flex;
-    flex-direction: column;
-  }
-  .list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-  }
+.input {
+  width: 60%;
+  padding: 1rem;
+  border-radius: 2rem;
+}
+.search-btn {
+  background: none;
+  border: none;
+  margin-left: -70px;
+  padding: 0;
+}
+.search-img {
+  height: 20px;
+}
+.sort {
+  margin-left: 2rem;
 }

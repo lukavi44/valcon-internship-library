@@ -1,6 +1,6 @@
 import Footer from '../Footer/Footer'
 import Header from '../Header/Header'
-import Search from '../Search/Search'
+import Sidebar from '../Sidebar/Sidebar'
 import styles from './MainLayout.module.css'
 
 export interface IMainLayout {
@@ -11,9 +11,9 @@ export interface IMainLayout {
 const MainLayout: React.FC<IMainLayout> = ({ children }) => {
   return (
     <div className={styles.wrapp}>
-      <Header />
+      <Sidebar />
       <div className={styles['inside-wrapp']}>
-        <Search />
+        <Header />
         <div className={styles.children}>{children}</div>
       </div>
       <Footer />
