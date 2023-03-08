@@ -1,10 +1,13 @@
-import React from 'react'
-import './App.css'
+import Homepage from './components/pages/Homepage/Homepage'
+import styles from './App.module.css'
+import { Route, Routes } from 'react-router-dom'
 
 function App() {
   return (
-    <div className='App'>
-      <h1>Hello Wooorld</h1>
+    <div className={styles['app-wrapper']}>
+      <Routes>
+        <Route path='/' element={<Homepage />} />
+      </Routes>
     </div>
   )
 }
