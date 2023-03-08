@@ -7,11 +7,15 @@ import styles from './MainLayout.module.css'
 export interface IMainLayout {
   children: React.ReactNode
 }
+export interface MainLayoutProps {
+  isLoggedIn: boolean
+}
 
-// eslint-disable-next-line react/prop-types
-const MainLayout: React.FC<IMainLayout> = ({ children }) => {
+const MainLayout: React.FC<IMainLayout> = ({ children }: React.PropsWithChildren<IMainLayout>) => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [showHeader, setIsHeaderShowing] = useState(true)
   const currentPathName = window.location.pathname
+
   if (currentPathName === '/login') {
     useEffect(() => {
       setIsHeaderShowing(false)
@@ -20,12 +24,12 @@ const MainLayout: React.FC<IMainLayout> = ({ children }) => {
 
   return (
     <div className={styles.wrapp}>
-      <Sidebar />
+      <Sidebar isLoggedIn={isLoggedIn} />
       <div className={styles['inside-wrapp']}>
-        {showHeader && <Header />}
+        {showHeader && <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />}
         <div className={styles.children}>{children}</div>
       </div>
-      <Footer />
+      <Footer isLoggedIn={isLoggedIn} />
     </div>
   )
 }

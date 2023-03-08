@@ -1,7 +1,12 @@
 import axios, { AxiosRequestConfig } from 'axios'
 
-const axiosConfig: AxiosRequestConfig = {}
+const axiosConfig: AxiosRequestConfig = {
+  baseURL: process.env.REACT_APP_API_BASE_URL,
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+  },
+}
 
-const instance = axios.create(axiosConfig)
+const axiosInstance = axios.create(axiosConfig)
 
-export default instance
+export default axiosInstance

@@ -1,17 +1,22 @@
-import React, { useEffect, useState } from 'react'
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import search from '../../assets/icons/search.png'
 import styles from './Header.module.css'
 import sort from '../../assets/icons/sort.png'
 import { Link } from 'react-router-dom'
 
-const Header = () => {
+const Header = ({
+  isLoggedIn,
+  setIsLoggedIn,
+}: {
+  isLoggedIn: boolean
+  setIsLoggedIn: Dispatch<SetStateAction<boolean>>
+}) => {
   const [position, setPosition] = useState(window.scrollY)
   const [isVisible, setIsVisible] = useState(true)
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   const handleLogout = () => {
     if (localStorage.getItem('accessToken')) {
-      localStorage.removeItem('accessToken')
+      localStorage.clear()
     }
     setIsLoggedIn(false)
   }

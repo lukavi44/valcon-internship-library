@@ -3,7 +3,7 @@
 }
 @media only screen and (min-width: 426px) {
   .header {
-    background-color: brown;
+    background-color: #d9b97e;
     width: 230px;
     display: flex;
     flex-direction: column;
@@ -11,10 +11,12 @@
   }
   .btn-holder {
     padding: 2rem 0;
+    background-color: #bf8845;
+
     border-bottom: 2px solid black;
   }
   .btn-holder:active {
-    background-color: orange;
+    background-color: #592e15;
   }
   .sidebar {
     display: flex;

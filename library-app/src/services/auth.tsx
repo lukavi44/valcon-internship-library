@@ -1,4 +1,5 @@
-import axios, { AxiosResponse } from 'axios'
+import { AxiosResponse } from 'axios'
+import axiosInstance from './axiosConfig'
 
 export interface LoginRequestData {
   email: string
@@ -12,10 +13,7 @@ export interface LoginResponseData {
 }
 
 const LoginRequest = async (body: LoginRequestData): Promise<AxiosResponse<LoginResponseData>> => {
-  return axios.post<LoginResponseData>(
-    'https://library-practice-app.azurewebsites.net/api/Auth/login',
-    body,
-  )
+  return axiosInstance.post<LoginResponseData>('api/Auth/login', body)
 }
 
 export default LoginRequest

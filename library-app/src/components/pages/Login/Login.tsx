@@ -98,7 +98,7 @@ const Login = () => {
         <form className={styles['form']} onSubmit={formSubmissionHandler}>
           <div className={emailInputClasses}>
             <label htmlFor='email'>
-              {emailInputIsInvalid ? 'Please enter valid email' : 'Email'}
+              {emailInputIsInvalid ? 'Please enter email' : 'Email'}
               {}
             </label>
             <input
@@ -111,7 +111,7 @@ const Login = () => {
           </div>
           <div className={passwordInputClasses}>
             <label htmlFor='password'>
-              {passwordInputIsInvalid ? 'Please enter valid password' : 'Password'}
+              {passwordInputIsInvalid ? 'Please enter password' : 'Password'}
             </label>
             <input
               type='password'
@@ -126,12 +126,12 @@ const Login = () => {
               Login
             </button>
           </div>
+          {invalidCredentials && (
+            <div className={unmatchedCredentialsClasses}>
+              <p>User is not found</p>
+            </div>
+          )}
         </form>
-        {invalidCredentials && (
-          <div className={unmatchedCredentialsClasses}>
-            <p>User is not found</p>
-          </div>
-        )}
       </div>
     </MainLayout>
   )

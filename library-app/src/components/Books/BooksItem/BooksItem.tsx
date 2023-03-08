@@ -6,7 +6,7 @@ const BooksItem = () => {
     <Card>
       <div className='book-holder'>
         <a href=''>
-          <img src={book1} alt='' className={styles.img} />
+          <img src={book1} alt='' className={styles['book-img']} />
         </a>
       </div>
     </Card>
