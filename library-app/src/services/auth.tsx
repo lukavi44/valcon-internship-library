@@ -8,12 +8,10 @@ export interface LoginRequestData {
 export interface LoginResponseData {
   accessToken: string
   refreshToken: string
-  expiration: Date
+  expiration: string
 }
 
-export const LoginRequest = async (
-  body: LoginRequestData,
-): Promise<AxiosResponse<LoginResponseData>> => {
+const LoginRequest = async (body: LoginRequestData): Promise<AxiosResponse<LoginResponseData>> => {
   return axios.post<LoginResponseData>(
     'https://library-practice-app.azurewebsites.net/api/Auth/login',
     body,

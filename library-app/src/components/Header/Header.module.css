@@ -35,6 +35,7 @@
 @media screen and (min-width: 426px) {
   .input {
     width: 40%;
+    transition: 2s;
   }
   .input:focus {
     width: 70%;

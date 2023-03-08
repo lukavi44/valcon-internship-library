@@ -7,6 +7,23 @@ import { Link } from 'react-router-dom'
 const Header = () => {
   const [position, setPosition] = useState(window.scrollY)
   const [isVisible, setIsVisible] = useState(true)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  const handleLogout = () => {
+    if (localStorage.getItem('accessToken')) {
+      localStorage.removeItem('accessToken')
+    }
+    setIsLoggedIn(false)
+  }
+
+  useEffect(() => {
+    if (!localStorage.getItem('accessToken')) {
+      setIsLoggedIn(false)
+    }
+    if (localStorage.getItem('accessToken')) {
+      setIsLoggedIn(true)
+    }
+  }, [setIsLoggedIn])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,9 +51,16 @@ const Header = () => {
           <img src={sort} alt='' />
         </button>
         <Link to='login'>
-          <button className={styles['login-btn']} type='submit'>
-            Login/Logout
-          </button>
+          {isLoggedIn && (
+            <button className={styles['login-btn']} type='submit' onClick={handleLogout}>
+              Logout
+            </button>
+          )}
+          {!isLoggedIn && (
+            <button className={styles['login-btn']} type='submit'>
+              Login
+            </button>
+          )}
         </Link>
       </header>
     </React.Fragment>

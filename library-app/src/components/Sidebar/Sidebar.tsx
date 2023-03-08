@@ -3,9 +3,11 @@ import styles from './Sidebar.module.css'
 import home from '../../assets/icons/home.png'
 import account from '../../assets/icons/account.png' // loader comp za slike
 import showMore from '../../assets/icons/showMore.png'
+import { useNavigate } from 'react-router-dom'
 
 const Sidebar = (props: any) => {
   const [adminOptions, setAdminOptions] = useState(false)
+  const navigateTo = useNavigate()
 
   return (
     <React.Fragment>
