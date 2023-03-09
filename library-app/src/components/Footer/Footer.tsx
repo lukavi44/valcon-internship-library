@@ -21,14 +21,14 @@ export const Footer = ({ isLoggedIn }: MainLayoutProps) => {
   return (
     <footer className={styles.footer}>
       <div className={styles['btn-holder']} onClick={handleHomeNavigation}>
-        <a className={styles.a}>
+        <a>
           <img src={home} alt='' />
         </a>
       </div>
 
       {isLoggedIn && (
         <div className={styles['btn-holder']}>
-          <a className={styles.a}>
+          <a>
             <img src={account} alt='' />
           </a>
         </div>
@@ -48,12 +48,12 @@ export const Footer = ({ isLoggedIn }: MainLayoutProps) => {
             </button>
           </div>
           <div className={styles['btn-holder']}>
-            <a className={styles.a}>
+            <a>
               <img src={account} alt='' />
             </a>
           </div>
           <div className={styles['btn-holder']}>
-            <a className={styles.a}>
+            <a>
               <img src={account} alt='' />
             </a>
           </div>

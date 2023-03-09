@@ -2,7 +2,7 @@ import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import search from '../../assets/icons/search.png'
 import styles from './Header.module.css'
 import sort from '../../assets/icons/sort.png'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 const Header = ({
   isLoggedIn,
@@ -55,7 +55,7 @@ const Header = ({
         <button className={styles.sort}>
           <img src={sort} alt='' />
         </button>
-        <Link to='login'>
+        <NavLink to='login'>
           {isLoggedIn && (
             <button className={styles['login-btn']} type='submit' onClick={handleLogout}>
               Logout
@@ -66,7 +66,7 @@ const Header = ({
               Login
             </button>
           )}
-        </Link>
+        </NavLink>
       </header>
     </React.Fragment>
   )
