@@ -19,20 +19,20 @@ const Sidebar = ({ isLoggedIn }: MainLayoutProps) => {
     <React.Fragment>
       <nav className={styles.header}>
         <div className={styles['btn-holder']} onClick={handleHomeNavigation}>
-          <a className={styles.a}>
+          <a>
             <img src={home} alt='' />
           </a>
         </div>
         {isLoggedIn && (
           <div className={styles['btn-holder']}>
-            <a className={styles.a}>
+            <a>
               <img src={account} alt='' />
             </a>
           </div>
         )}
         {isLoggedIn && (
           <div className={styles['btn-holder']} onClick={() => setAdminOptions(!adminOptions)}>
-            <a className={styles.a}>
+            <a>
               <img src={showMore} alt='' />
             </a>
           </div>
@@ -40,12 +40,12 @@ const Sidebar = ({ isLoggedIn }: MainLayoutProps) => {
         {adminOptions && (
           <nav className={styles.sidebar}>
             <div className={styles['btn-holder']}>
-              <a className={styles.a}>
+              <a>
                 <img src={account} alt='admin option1' />
               </a>
             </div>
             <div className={styles['btn-holder']}>
-              <a className={styles.a}>
+              <a>
                 <img src={account} alt='admin option2' />
               </a>
             </div>
