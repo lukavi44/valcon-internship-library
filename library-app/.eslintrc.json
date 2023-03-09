@@ -1,3 +1,5 @@
+
+
 {
     "env": {
         "browser": true,
@@ -22,15 +24,19 @@
         "@typescript-eslint",
         "react-hooks",
         "prettier"
+        
     ],
     "rules": {
-        "react/react-in-jsx-scope": "off",
+      "react/react-in-jsx-scope": "off",
         "camelcase": "error",
         "spaced-comment": "error",
         "quotes": ["error", "single"],
         "no-duplicate-imports": "error"
     },
     	"settings": {
+        "react": {
+      "version": "detect"
+    },
     "import/resolver": {
       "typescript": {}
     }

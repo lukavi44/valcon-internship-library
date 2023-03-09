@@ -2,25 +2,18 @@ import Homepage from './components/pages/Homepage/Homepage'
 import styles from './App.module.css'
 import { Route, Routes } from 'react-router-dom'
 import Login from './components/pages/Login/Login'
-import PrivateRoutes from './router/PrivateRoutes'
-import { Dispatch, SetStateAction } from 'react'
-import AppRouter from './router/AppRouter'
-
-interface AppTokenProps {
-  accessToken: string | ''
-  setAccessToken: Dispatch<SetStateAction<string | ''>>
-}
+import { useState } from 'react'
 
 function App() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [accessToken, setAccessToken] = useState(localStorage.getItem('accessToken')) // it will be used for PrivateRoutes when implemented
+
   return (
     <div className={styles['app-wrapp']}>
       <Routes>
-        <Route element={<PrivateRoutes />}>
-          <Route path='/' element={<Homepage />} />
-        </Route>
-        <Route path='login' element={<Login />} />
+        <Route path='/' element={<Homepage />} />
+        <Route path='login' element={<Login setAccessToken={setAccessToken} />} />
       </Routes>
-      {/* <AppRouter> */}
     </div>
   )
 }

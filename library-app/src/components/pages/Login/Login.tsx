@@ -1,11 +1,15 @@
 import axios from 'axios'
-import React, { FormEvent, useEffect, useState } from 'react'
+import React, { Dispatch, FormEvent, SetStateAction, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import LoginRequest, { LoginRequestData } from '../../../services/auth'
 import MainLayout from '../../Layout/MainLayout'
 import styles from './Login.module.css'
 
-const Login = () => {
+interface LoginProps {
+  setAccessToken: Dispatch<SetStateAction<string | null>>
+}
+
+const Login = ({ setAccessToken }: LoginProps) => {
   const [enteredEmail, setEnteredEmail] = useState('')
   const [enteredEmailIsValid, setEnteredEmailIsValid] = useState(false)
 
@@ -64,6 +68,7 @@ const Login = () => {
           localStorage.setItem('accessToken', data.accessToken)
           localStorage.setItem('refreshToken', data.refreshToken)
           localStorage.setItem('expiration', data.expiration)
+          setAccessToken(data.accessToken)
           navigateTo('/')
           console.log(data)
         })
