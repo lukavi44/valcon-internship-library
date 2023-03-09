@@ -8,7 +8,12 @@ const Modal = ({ open, children, onClose }: any) => {
   return ReactDOM.createPortal(
     <>
       <div className={styles.overlay} onClick={onClose} />
-      <div className={styles.modal}>{children}</div>
+      <div className={styles.modal}>
+        <button onClick={onClose} className={styles['modal-close-btn']} type='submit'>
+          close
+        </button>
+        {children}
+      </div>
     </>,
     portalDiv,
   )

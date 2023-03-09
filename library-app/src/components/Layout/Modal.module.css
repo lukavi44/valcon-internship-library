@@ -17,3 +17,8 @@
   padding: 50px;
   z-index: 1000;
 }
+.modal-close-btn {
+  position: fixed;
+  top: 0;
+  right: 0;
+}

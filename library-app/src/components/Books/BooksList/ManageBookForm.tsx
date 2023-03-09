@@ -32,9 +32,6 @@ const ManageBookForm = () => {
 
   return (
     <form className={styles['form-wrapper']} action='' onSubmit={addBookHandler}>
-      <button className={styles['form-close-btn']} type='submit'>
-        close
-      </button>
       <div className={styles['form-group']}>
         <label htmlFor='title'>title</label>
         <input
@@ -97,7 +94,9 @@ const ManageBookForm = () => {
       </div>
       <div className={styles['form-group']}>
         <label htmlFor='authorIds'>author</label>
-        <select name='authorIds' id='authorIds'></select>
+        <select name='authorIds' id='authorIds'>
+          <option value='s'>s</option>
+        </select>
       </div>
       <button className={styles['form-submit-btn']}>Submit Book</button>
     </form>
