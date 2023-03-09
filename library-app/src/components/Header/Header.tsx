@@ -1,11 +1,34 @@
-import React, { useEffect, useState } from 'react'
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import search from '../../assets/icons/search.png'
 import styles from './Header.module.css'
 import sort from '../../assets/icons/sort.png'
+import { NavLink } from 'react-router-dom'
 
-const Header = () => {
+const Header = ({
+  isLoggedIn,
+  setIsLoggedIn,
+}: {
+  isLoggedIn: boolean
+  setIsLoggedIn: Dispatch<SetStateAction<boolean>>
+}) => {
   const [position, setPosition] = useState(window.scrollY)
   const [isVisible, setIsVisible] = useState(true)
+
+  const handleLogout = () => {
+    if (localStorage.getItem('accessToken')) {
+      localStorage.clear()
+    }
+    setIsLoggedIn(false)
+  }
+
+  useEffect(() => {
+    if (!localStorage.getItem('accessToken')) {
+      setIsLoggedIn(false)
+    }
+    if (localStorage.getItem('accessToken')) {
+      setIsLoggedIn(true)
+    }
+  }, [setIsLoggedIn])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,6 +55,18 @@ const Header = () => {
         <button className={styles.sort}>
           <img src={sort} alt='' />
         </button>
+        <NavLink to='login'>
+          {isLoggedIn && (
+            <button className={styles['login-btn']} type='submit' onClick={handleLogout}>
+              Logout
+            </button>
+          )}
+          {!isLoggedIn && (
+            <button className={styles['login-btn']} type='submit'>
+              Login
+            </button>
+          )}
+        </NavLink>
       </header>
     </React.Fragment>
   )

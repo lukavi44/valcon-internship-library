@@ -1,34 +1,39 @@
 import styles from './Footer.module.css'
 import home from '../../assets/icons/home.png'
-import account from '../../assets/icons/account.png' // loader comp za slike
+import account from '../../assets/icons/account.png'
 import showMore from '../../assets/icons/showMore.png'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { MainLayoutProps } from '../Layout/MainLayout'
 
-export const Footer = () => {
-  const [admin, setAdmin] = useState(false)
+export const Footer = ({ isLoggedIn }: MainLayoutProps) => {
   const [adminOptions, setAdminOptions] = useState(false)
-
-  useEffect(() => {
-    return
-  }, [])
+  const navigateTo = useNavigate()
 
   const closeAdminOptions = () => {
     setAdminOptions(false)
   }
 
+  const handleHomeNavigation = () => {
+    navigateTo('/')
+  }
+
   return (
     <footer className={styles.footer}>
-      <div className={styles['btn-holder']}>
-        <a className={styles.a} onClick={() => setAdmin(!admin)}>
+      <div className={styles['btn-holder']} onClick={handleHomeNavigation}>
+        <a>
           <img src={home} alt='' />
         </a>
       </div>
-      <div className={styles['btn-holder']}>
-        <a className={styles.a}>
-          <img src={account} alt='' />
-        </a>
-      </div>
-      {admin && (
+
+      {isLoggedIn && (
+        <div className={styles['btn-holder']}>
+          <a>
+            <img src={account} alt='' />
+          </a>
+        </div>
+      )}
+      {adminOptions && (
         <div className={styles['btn-holder']}>
           <a onClick={() => setAdminOptions(!adminOptions)}>
             <img src={showMore} alt='' />
@@ -43,12 +48,12 @@ export const Footer = () => {
             </button>
           </div>
           <div className={styles['btn-holder']}>
-            <a className={styles.a}>
+            <a>
               <img src={account} alt='' />
             </a>
           </div>
           <div className={styles['btn-holder']}>
-            <a className={styles.a}>
+            <a>
               <img src={account} alt='' />
             </a>
           </div>

@@ -1,7 +1,7 @@
 .search-holder {
   width: 100%;
   display: flex;
-  background-color: rgb(198, 196, 167);
+  background-color: #d9b97e;
   padding: 29px 0;
   justify-content: center;
   gap: 1rem;
@@ -10,9 +10,11 @@
   top: 0;
 }
 .input {
-  width: 60%;
   padding: 1rem;
   border-radius: 2rem;
+}
+.input:focus {
+  width: 100%;
 }
 .search-btn {
   background: none;
@@ -25,4 +27,20 @@
 }
 .sort {
   margin-left: 2rem;
+  background-color: #98a0a6;
+}
+.login-btn {
+  height: 100%;
+  background-color: #98a0a6;
+  padding: 0 2rem;
+}
+
+@media screen and (min-width: 426px) {
+  .input {
+    width: 40%;
+    transition: 2s;
+  }
+  .input:focus {
+    width: 70%;
+  }
 }
