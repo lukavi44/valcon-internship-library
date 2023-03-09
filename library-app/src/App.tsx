@@ -9,7 +9,8 @@ function App() {
   const [accessToken, setAccessToken] = useState(localStorage.getItem('accessToken')) // it will be used for PrivateRoutes when implemented
 
   return (
-    <div className={styles['app-wrapp']}>
+    <div className={styles['app-wrapper']}>
+
       <Routes>
         <Route path='/' element={<Homepage />} />
         <Route path='login' element={<Login setAccessToken={setAccessToken} />} />

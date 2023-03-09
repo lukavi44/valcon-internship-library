@@ -21,7 +21,6 @@ const MainLayout: React.FC<IMainLayout> = ({ children }: React.PropsWithChildren
       setIsHeaderShowing(false)
     }, [])
   }
-
   return (
     <div className={styles.wrapp}>
       <Sidebar isLoggedIn={isLoggedIn} />
