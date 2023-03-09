@@ -6,12 +6,23 @@
   width: 100%;
   gap: 1rem;
 }
+.books-wrap {
+  gap: 2rem;
+  display: flex;
+  flex-direction: column;
+}
 
 @media only screen and (min-width: 426px) {
-  .wrapp {
+  .books-wrap {
+    flex-wrap: wrap;
     justify-content: space-evenly;
     flex-direction: row;
-    flex-wrap: wrap;
+  }
+  .button-holder {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem;
     gap: 2rem;
   }
 }
