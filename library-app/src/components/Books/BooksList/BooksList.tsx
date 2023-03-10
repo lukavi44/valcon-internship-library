@@ -7,6 +7,7 @@ import ManageBookForm from './ManageBookForm'
 
 const BooksList = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const [books, setBooks] = useState([{}])
 
   return (
     <div className={styles.wrapp}>
