@@ -2,22 +2,39 @@ import axios from 'axios'
 import { FormEvent, useEffect, useState } from 'react'
 import { postBookRequest } from '../../../services/BooksServices'
 import styles from './ManageBookForm.module.css'
-import Select from 'react-select'
+import Select, { MultiValue } from 'react-select'
 import BookBodyData from '../../../models/bookData.model'
 import Author from '../../../models/author.model'
 import getAuthors from '../../../services/AuthorServices'
 
 const ManageBookForm = () => {
   const [authors, setAuthors] = useState<Author[]>([])
+  const [setCover, setRequestCover] = useState<any>()
   const [formData, setFormData] = useState<BookBodyData>({
+    id: 0,
     title: '',
     description: '',
     isbn: '',
     quantity: 0,
-    cover: '',
+    cover: setCover,
     publishDate: '',
     authorIds: [],
   })
+
+  const handleFileChange = ({ currentTarget }: FormEvent<HTMLInputElement>) => {
+    if (currentTarget.files) {
+      const files = currentTarget.files
+      const reader = new FileReader()
+      if (files) {
+        reader.readAsDataURL(files[0])
+        setRequestCover(files[0])
+        reader.onloadend = function () {
+          const base64data = reader.result
+          if (base64data) setCover(base64data as string)
+        }
+      }
+    }
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,15 +54,15 @@ const ManageBookForm = () => {
     console.log({ formData })
     try {
       const form = new FormData()
-      form.append('cover', formData.cover)
+      form.append('cover', setCover)
       form.append('description', formData.description)
       form.append('isbn', formData.isbn)
       form.append('publishDate', formData.publishDate)
       form.append('quantity', formData.quantity.toString())
       form.append('title', formData.title)
-      formData.authorIds.forEach((author) => {
-        form.append('authorIds', author)
-      })
+      // form.append('authorIds', formData.authorIds.map((author) => author.id).toString())
+      formData.authorIds.forEach((author) => form.append('authorIds', author.id.toString()))
+
       const data = await postBookRequest(form)
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -53,9 +70,13 @@ const ManageBookForm = () => {
           console.log('neautorizovan')
         }
       }
-
       return
     }
+  }
+
+  const onChangeAuthors = (newAuthors: MultiValue<Author>) => {
+    console.log(newAuthors)
+    setFormData((prev) => ({ ...prev, authorIds: newAuthors.map((authors) => authors) }))
   }
 
   return (
@@ -107,7 +128,7 @@ const ManageBookForm = () => {
           name='cover'
           type='file'
           defaultValue={formData.cover}
-          onChange={(e) => setFormData((prev) => ({ ...prev, cover: e.target.value }))}
+          onChange={handleFileChange}
         />
       </div>
       <div className={styles['form-group']}>
@@ -124,8 +145,14 @@ const ManageBookForm = () => {
       <div className={styles['form-group']}>
         <label htmlFor='authorIds'>author</label>
         <Select
+          name='authorIds'
+          id='authorIds'
           options={authors}
-          getOptionLabel={(option) => `${option.firstName} ${option.lastName}`}
+          defaultValue={formData.authorIds}
+          getOptionLabel={(option) => `${option.firstname} ${option.lastname}`}
+          onChange={onChangeAuthors}
+          isMulti={true}
+          getOptionValue={(option: Author) => option.id.toString()}
         />
       </div>
       <button className={styles['form-submit-btn']}>Submit Book</button>

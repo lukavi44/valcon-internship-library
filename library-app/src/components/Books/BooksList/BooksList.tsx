@@ -1,13 +1,51 @@
 import BooksItem from '../BooksItem/BooksItem'
 import styles from './BooksList.module.css'
 import sort from '../../../assets/icons/sort.png'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Modal from '../../Layout/Modal'
 import ManageBookForm from './ManageBookForm'
+import { getBooksRequest } from '../../../services/BooksServices'
+import Author from '../../../models/author.model'
+
+export interface BookBodyDataGet {
+  id: number
+  title: string
+  description: string
+  isbn: string
+  quantity: number
+  cover: string
+  publishDate: string
+  authors: Author[]
+}
 
 const BooksList = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const [books, setBooks] = useState([{}])
+  const [books, setBooks] = useState<BookBodyDataGet[]>([
+    {
+      id: 0,
+      title: '',
+      description: '',
+      isbn: '',
+      quantity: 0,
+      cover: '',
+      publishDate: '',
+      authors: [],
+    },
+  ])
+
+  useEffect(() => {
+    fetchData()
+  }, [])
+
+  const fetchData = async () => {
+    try {
+      const responseData = await getBooksRequest()
+      setBooks(responseData.data)
+      return responseData
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   return (
     <div className={styles.wrapp}>
@@ -23,15 +61,9 @@ const BooksList = () => {
         <ManageBookForm />
       </Modal>
       <div className={styles['books-wrap']}>
-        <BooksItem />
-        <BooksItem />
-        <BooksItem />
-        <BooksItem />
-        <BooksItem />
-        <BooksItem />
-        <BooksItem />
-        <BooksItem />
-        <BooksItem />
+        {books.map((book) => (
+          <BooksItem key={book.id} book={book} />
+        ))}
       </div>
     </div>
   )

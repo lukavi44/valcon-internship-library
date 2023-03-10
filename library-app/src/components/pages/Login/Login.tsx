@@ -92,7 +92,7 @@ const Login = () => {
     : styles['form-group']
 
   return (
-    <MainLayout>
+    <MainLayout isLoggedIn>
       <div className={styles.container}>
         <h1>Login</h1>
         <form className={styles['form']} onSubmit={formSubmissionHandler}>

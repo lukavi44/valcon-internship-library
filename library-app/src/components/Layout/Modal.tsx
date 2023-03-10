@@ -3,7 +3,13 @@ import styles from './Modal.module.css'
 
 const portalDiv = document.getElementById('portal') as HTMLElement
 
-const Modal = ({ open, children, onClose }: any) => {
+export interface ModalProps {
+  open: any
+  children: any
+  onClose: any
+}
+
+const Modal = ({ open, children, onClose }: ModalProps) => {
   if (!open) return null
   return ReactDOM.createPortal(
     <>

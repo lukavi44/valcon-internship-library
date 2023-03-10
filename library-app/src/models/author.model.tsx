@@ -1,4 +1,5 @@
 export default interface Author {
-  firstName: string
-  lastName: string
+  id: number
+  firstname: string
+  lastname: string
 }

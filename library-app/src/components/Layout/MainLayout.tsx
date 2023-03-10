@@ -1,17 +1,14 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Footer from '../Footer/Footer'
 import Header from '../Header/Header'
 import Sidebar from '../Sidebar/Sidebar'
 import styles from './MainLayout.module.css'
 
-export interface IMainLayout {
-  children: React.ReactNode
-}
 export interface MainLayoutProps {
   isLoggedIn: boolean
 }
 
-const MainLayout: React.FC<IMainLayout> = ({ children }: React.PropsWithChildren<IMainLayout>) => {
+const MainLayout = ({ children }: React.PropsWithChildren<MainLayoutProps>) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [showHeader, setIsHeaderShowing] = useState(true)
   const currentPathName = window.location.pathname
@@ -21,6 +18,7 @@ const MainLayout: React.FC<IMainLayout> = ({ children }: React.PropsWithChildren
       setIsHeaderShowing(false)
     }, [])
   }
+
   return (
     <div className={styles.wrapp}>
       <Sidebar isLoggedIn={isLoggedIn} />

@@ -11,7 +11,7 @@ export const postBookRequest = (body: FormData): Promise<AxiosResponse> => {
 }
 
 export const getBooksRequest = (): Promise<AxiosResponse> => {
-  return axiosInstance.post<BookBodyData>('api/Books', {
+  return axiosInstance.get<BookBodyData>('api/Books', {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
     },
