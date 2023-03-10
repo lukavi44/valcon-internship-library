@@ -1,17 +1,8 @@
 import { AxiosResponse } from 'axios'
+import BookBodyData from '../models/bookData.model'
 import axiosInstance from './axiosConfig'
 
-export interface BookBodyData {
-  title: string
-  description: string
-  isbn: string
-  quantity: number
-  cover: string
-  publishDate: string
-  authorIds: number[]
-}
-
-const postBookRequest = (body: BookBodyData): Promise<AxiosResponse> => {
+export const postBookRequest = (body: FormData): Promise<AxiosResponse> => {
   return axiosInstance.post<BookBodyData>('api/Books', body, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
@@ -19,4 +10,10 @@ const postBookRequest = (body: BookBodyData): Promise<AxiosResponse> => {
   })
 }
 
-export default postBookRequest
+export const getBooksRequest = (): Promise<AxiosResponse> => {
+  return axiosInstance.post<BookBodyData>('api/Books', {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+    },
+  })
+}
