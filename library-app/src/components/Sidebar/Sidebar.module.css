@@ -3,7 +3,6 @@
 }
 @media only screen and (min-width: 426px) {
   .header {
-    /* background-color: #d9b97e; */
     width: 230px;
     display: flex;
     flex-direction: column;

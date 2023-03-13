@@ -31,8 +31,11 @@ const BooksList = () => {
         <ManageBookForm />
       </Modal>
       <div className={styles['books-wrap']}>
-        {!books && <p>Nema dostupnih knjiga</p>}
-        {books && books.map((book) => <BooksItem key={book.Id} Book={book} />)}
+        {books.length === 0 ? (
+          <p>No available books</p>
+        ) : (
+          books && books.map((book) => <BooksItem key={book.Id} Book={book} />)
+        )}
       </div>
     </div>
   )

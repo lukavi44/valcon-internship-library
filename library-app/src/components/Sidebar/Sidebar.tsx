@@ -9,7 +9,7 @@ import Modal from '../Layout/Modal'
 import ManageBookForm from '../Books/BooksList/ManageBookForm'
 
 const Sidebar = ({ isLoggedIn }: MainLayoutProps) => {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isModalOpened, setIsModalOpened] = useState(false)
 
   const [adminOptions, setAdminOptions] = useState(false)
 
@@ -47,16 +47,18 @@ const Sidebar = ({ isLoggedIn }: MainLayoutProps) => {
               <button
                 className={styles['add-new-book']}
                 type='submit'
-                onClick={() => setIsOpen(true)}
+                onClick={() => setIsModalOpened(true)}
               >
                 Add New Book +
               </button>
             </div>
           </nav>
         )}
-        <Modal open={isOpen} onClose={() => setIsOpen(false)}>
-          <ManageBookForm />
-        </Modal>
+        {isModalOpened && (
+          <Modal open={isModalOpened} onClose={() => setIsModalOpened(false)}>
+            <ManageBookForm />
+          </Modal>
+        )}
       </nav>
     </React.Fragment>
   )

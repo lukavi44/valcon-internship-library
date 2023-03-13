@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { FormEvent, useEffect, useState } from 'react'
+import { FormEvent, useCallback, useEffect, useState } from 'react'
 import { postBookRequest } from '../../../services/BooksServices'
 import styles from './ManageBookForm.module.css'
 import Select, { MultiValue } from 'react-select'
@@ -38,22 +38,22 @@ const ManageBookForm = () => {
     }
   }
 
+  const fetchAuthorsData = useCallback(() => {
+    getAuthors().then((response) => {
+      setAuthors(response.data)
+    })
+  }, [])
+
   useEffect(() => {
-    const fetchData = async () => {
-      await getAuthors().then((response) => {
-        setAuthors(response.data)
-      })
-    }
     try {
-      fetchData()
+      fetchAuthorsData()
     } catch (error) {
-      if (axios.isAxiosError(error)) console.log('nema autora')
+      if (error) console.log('nema autora')
     }
   }, [])
 
   const addBookHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    console.log({ formData })
     try {
       const form = new FormData()
       form.append('Cover', requestCover)
@@ -66,24 +66,21 @@ const ManageBookForm = () => {
 
       await postBookRequest(form)
     } catch (error) {
-      if (axios.isAxiosError(error)) {
-        if (error.response?.status === 401) {
-          console.log('neautorizovan')
-        }
+      if (axios.isAxiosError(error) && error.response?.status === 401) {
+        console.log('neautorizovan')
       }
       return
     }
   }
 
   const onChangeAuthors = (newAuthors: MultiValue<Author>) => {
-    console.log(newAuthors)
     setFormData((prev) => ({ ...prev, authorIds: newAuthors.map((authors) => authors) }))
   }
 
   return (
-    <form className={styles['form-wrapper']} action='' onSubmit={addBookHandler}>
+    <form className={styles['form-wrapper']} onSubmit={addBookHandler}>
       <div className={styles['form-group-column']}>
-        <img style={{ height: 100 }} src={cover ? cover : placeholder} alt='' />
+        <img className={styles['upload-img']} src={cover ? cover : placeholder} alt='' />
         <input id='cover' name='cover' type='file' onChange={handleFileChange} />
       </div>
       <div className={styles['form-group']}>
@@ -93,7 +90,7 @@ const ManageBookForm = () => {
           id='title'
           name='title'
           defaultValue={formData.Title}
-          onChange={(e) => setFormData((prev) => ({ ...prev, title: e.target.value }))}
+          onChange={(e) => setFormData((prev) => ({ ...prev, Title: e.target.value }))}
         />
       </div>
       <div className={styles['form-group']}>
@@ -103,7 +100,7 @@ const ManageBookForm = () => {
           id='description'
           name='description'
           defaultValue={formData.Description}
-          onChange={(e) => setFormData((prev) => ({ ...prev, description: e.target.value }))}
+          onChange={(e) => setFormData((prev) => ({ ...prev, Description: e.target.value }))}
         />
       </div>
       <div className={styles['form-group']}>
@@ -113,7 +110,7 @@ const ManageBookForm = () => {
           name='isbn'
           type='text'
           defaultValue={formData.Isbn}
-          onChange={(e) => setFormData((prev) => ({ ...prev, isbn: e.target.value }))}
+          onChange={(e) => setFormData((prev) => ({ ...prev, Isbn: e.target.value }))}
         />
       </div>
       <div className={styles['form-group']}>
@@ -123,7 +120,7 @@ const ManageBookForm = () => {
           name='quantity'
           type='number'
           defaultValue={formData.Quantity}
-          onChange={(e) => setFormData((prev) => ({ ...prev, quantity: +e.target.value }))}
+          onChange={(e) => setFormData((prev) => ({ ...prev, Quantity: +e.target.value }))}
         />
       </div>
       <div className={styles['form-group']}>
@@ -133,7 +130,7 @@ const ManageBookForm = () => {
           name='publishDate'
           type='date'
           defaultValue={formData.PublishDate}
-          onChange={(e) => setFormData((prev) => ({ ...prev, publishDate: e.target.value }))}
+          onChange={(e) => setFormData((prev) => ({ ...prev, PublishDate: e.target.value }))}
         />
       </div>
 
@@ -147,7 +144,7 @@ const ManageBookForm = () => {
           defaultValue={formData.AuthorIds}
           getOptionLabel={(option) => `${option.FirstName} ${option.LastName}`}
           onChange={onChangeAuthors}
-          isMulti={true}
+          isMulti
           getOptionValue={(option: Author) => option.Id.toString()}
         />
       </div>

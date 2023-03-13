@@ -56,12 +56,12 @@ const Header = ({
         </button>
         <NavLink to='login'>
           {isLoggedIn && (
-            <button className={styles['login-btn']} type='submit' onClick={handleLogout}>
+            <button className={styles['login-btn']} type='button' onClick={handleLogout}>
               LOGOUT
             </button>
           )}
           {!isLoggedIn && (
-            <button className={styles['login-btn']} type='submit'>
+            <button className={styles['login-btn']} type='button'>
               LOGIN
             </button>
           )}
