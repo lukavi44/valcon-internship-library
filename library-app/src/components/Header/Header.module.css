@@ -1,9 +1,9 @@
-.search-holder {
+.header-container {
   width: 100%;
   display: flex;
   background-color: #d9b97e;
   padding: 29px 0;
-  justify-content: center;
+  justify-content: flex-end;
   gap: 1rem;
   border-bottom: 2px solid black;
   position: sticky;
@@ -27,12 +27,16 @@
 }
 .sort {
   margin-left: 2rem;
-  background-color: #98a0a6;
+  background-color: #e3d9c7;
+  border: 2px solid #f6f6f6;
 }
 .login-btn {
   height: 100%;
-  background-color: #98a0a6;
+  background: none;
   padding: 0 2rem;
+  color: #fff;
+  border: none;
+  font-size: 1.5rem;
 }
 
 @media screen and (min-width: 426px) {

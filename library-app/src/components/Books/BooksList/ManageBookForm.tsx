@@ -6,19 +6,21 @@ import Select, { MultiValue } from 'react-select'
 import BookBodyData from '../../../models/bookData.model'
 import Author from '../../../models/author.model'
 import getAuthors from '../../../services/AuthorServices'
+import placeholder from '../../../assets/placeholderImg/placeholder.jpeg'
 
 const ManageBookForm = () => {
   const [authors, setAuthors] = useState<Author[]>([])
-  const [setCover, setRequestCover] = useState<any>()
+  const [requestCover, setRequestCover] = useState<Blob>(new Blob())
+  const [cover, setCover] = useState('')
   const [formData, setFormData] = useState<BookBodyData>({
-    id: 0,
-    title: '',
-    description: '',
-    isbn: '',
-    quantity: 0,
-    cover: setCover,
-    publishDate: '',
-    authorIds: [],
+    Id: 0,
+    Title: '',
+    Description: '',
+    Isbn: '',
+    Quantity: 0,
+    Cover: requestCover,
+    PublishDate: '',
+    AuthorIds: [],
   })
 
   const handleFileChange = ({ currentTarget }: FormEvent<HTMLInputElement>) => {
@@ -54,14 +56,13 @@ const ManageBookForm = () => {
     console.log({ formData })
     try {
       const form = new FormData()
-      form.append('cover', setCover)
-      form.append('description', formData.description)
-      form.append('isbn', formData.isbn)
-      form.append('publishDate', formData.publishDate)
-      form.append('quantity', formData.quantity.toString())
-      form.append('title', formData.title)
-      // form.append('authorIds', formData.authorIds.map((author) => author.id).toString())
-      formData.authorIds.forEach((author) => form.append('authorIds', author.id.toString()))
+      form.append('Cover', requestCover)
+      form.append('Description', formData.Description)
+      form.append('Isbn', formData.Isbn)
+      form.append('PublishDate', formData.PublishDate)
+      form.append('Quantity', formData.Quantity.toString())
+      form.append('Title', formData.Title)
+      formData.AuthorIds.forEach((author) => form.append('authorIds', author.Id.toString()))
 
       const data = await postBookRequest(form)
     } catch (error) {
@@ -81,78 +82,73 @@ const ManageBookForm = () => {
 
   return (
     <form className={styles['form-wrapper']} action='' onSubmit={addBookHandler}>
+      <div className={styles['form-group-column']}>
+        <img style={{ height: 100 }} src={cover ? cover : placeholder} alt='' />
+        <input id='cover' name='cover' type='file' onChange={handleFileChange} />
+      </div>
       <div className={styles['form-group']}>
-        <label htmlFor='title'>title</label>
+        <label htmlFor='title'>Set Title</label>
         <input
           type='text'
           id='title'
           name='title'
-          defaultValue={formData.title}
+          defaultValue={formData.Title}
           onChange={(e) => setFormData((prev) => ({ ...prev, title: e.target.value }))}
         />
       </div>
       <div className={styles['form-group']}>
-        <label htmlFor='description'>description</label>
+        <label htmlFor='description'>Add Description</label>
         <input
           type='text'
           id='description'
           name='description'
-          defaultValue={formData.description}
+          defaultValue={formData.Description}
           onChange={(e) => setFormData((prev) => ({ ...prev, description: e.target.value }))}
         />
       </div>
       <div className={styles['form-group']}>
-        <label htmlFor='isbn'>isbn</label>
+        <label htmlFor='isbn'>ISBN</label>
         <input
           id='isbn'
           name='isbn'
           type='text'
-          defaultValue={formData.isbn}
+          defaultValue={formData.Isbn}
           onChange={(e) => setFormData((prev) => ({ ...prev, isbn: e.target.value }))}
         />
       </div>
       <div className={styles['form-group']}>
-        <label htmlFor='quantity'>quantity</label>
+        <label htmlFor='quantity'>Quantity</label>
         <input
           id='quantity'
           name='quantity'
           type='number'
-          defaultValue={formData.quantity}
+          defaultValue={formData.Quantity}
           onChange={(e) => setFormData((prev) => ({ ...prev, quantity: +e.target.value }))}
         />
       </div>
       <div className={styles['form-group']}>
-        <label htmlFor='cover'>cover</label>
-        <input
-          id='cover'
-          name='cover'
-          type='file'
-          defaultValue={formData.cover}
-          onChange={handleFileChange}
-        />
-      </div>
-      <div className={styles['form-group']}>
-        <label htmlFor='publishDate'>publish date</label>
+        <label htmlFor='publishDate'>Publish Date</label>
         <input
           id='publishDate'
           name='publishDate'
           type='date'
-          defaultValue={formData.publishDate}
+          defaultValue={formData.PublishDate}
           onChange={(e) => setFormData((prev) => ({ ...prev, publishDate: e.target.value }))}
         />
       </div>
 
       <div className={styles['form-group']}>
-        <label htmlFor='authorIds'>author</label>
+        <label htmlFor='authorIds'>Author(s)</label>
         <Select
+          className={styles['select-authors-dropdown']}
           name='authorIds'
           id='authorIds'
           options={authors}
-          defaultValue={formData.authorIds}
-          getOptionLabel={(option) => `${option.firstname} ${option.lastname}`}
+          defaultValue={formData.AuthorIds}
+          getOptionLabel={(option) => `${option.FirstName} ${option.LastName}`}
           onChange={onChangeAuthors}
           isMulti={true}
-          getOptionValue={(option: Author) => option.id.toString()}
+          getOptionValue={(option: Author) => option.Id.toString()}
         />
       </div>
       <button className={styles['form-submit-btn']}>Submit Book</button>

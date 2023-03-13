@@ -16,7 +16,7 @@ const Modal = ({ open, children, onClose }: ModalProps) => {
       <div className={styles.overlay} onClick={onClose} />
       <div className={styles.modal}>
         <button onClick={onClose} className={styles['modal-close-btn']} type='submit'>
-          close
+          x
         </button>
         {children}
       </div>

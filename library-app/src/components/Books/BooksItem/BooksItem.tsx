@@ -10,15 +10,15 @@ const BooksItem = ({ book }: BookProps) => {
   return (
     <Card>
       <div className={styles['book-holder']}>
-        <h2>{book.title}</h2>
-        <p>{book.description}</p>
-        <a href=''>
-          <img src={`data:image/png;base64, ${book.cover}`} alt='' className={styles['book-img']} />
-        </a>
-        <div>
-          {book.authors.map((author) => (
-            <p key={author.id}>{author.firstname}</p>
-          ))}
+        <img src={`data:image/png;base64, ${book.Cover}`} alt='' className={styles['book-img']} />
+        <div className={styles['about-book']}>
+          <h2>{book.Title}</h2>
+          <p>{book.Description}</p>
+
+          <div>
+            {book.Authors &&
+              book.Authors.map((Author) => <p key={Author.Id}>{Author.FirstName}</p>)}
+          </div>
         </div>
       </div>
     </Card>

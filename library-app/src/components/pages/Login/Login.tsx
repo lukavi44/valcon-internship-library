@@ -61,9 +61,9 @@ const Login = () => {
     } else {
       await LoginRequest(formData)
         .then(({ data }) => {
-          localStorage.setItem('accessToken', data.accessToken)
-          localStorage.setItem('refreshToken', data.refreshToken)
-          localStorage.setItem('expiration', data.expiration)
+          localStorage.setItem('accessToken', data.AccessToken)
+          localStorage.setItem('refreshToken', data.RefreshToken)
+          localStorage.setItem('expiration', data.Expiration)
           navigateTo('/')
           console.log(data)
         })

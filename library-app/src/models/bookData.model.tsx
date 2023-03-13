@@ -1,12 +1,12 @@
 import Author from './author.model'
 
 export default interface BookBodyData {
-  id: number
-  title: string
-  description: string
-  isbn: string
-  quantity: number
-  cover: string
-  publishDate: string
-  authorIds: Author[]
+  Id: number
+  Title: string
+  Description: string
+  Isbn: string
+  Quantity: number
+  Cover: Blob
+  PublishDate: string
+  AuthorIds: Author[]
 }

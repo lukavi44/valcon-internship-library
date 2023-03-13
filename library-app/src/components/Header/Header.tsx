@@ -45,7 +45,7 @@ const Header = ({
   return (
     <React.Fragment>
       <header
-        className={styles['search-holder']}
+        className={styles['header-container']}
         style={{ visibility: isVisible ? 'visible' : 'hidden' }}
       >
         <input type='search' name='search' id='search' className={styles.input} />
@@ -58,12 +58,12 @@ const Header = ({
         <NavLink to='login'>
           {isLoggedIn && (
             <button className={styles['login-btn']} type='submit' onClick={handleLogout}>
-              Logout
+              LOGOUT
             </button>
           )}
           {!isLoggedIn && (
             <button className={styles['login-btn']} type='submit'>
-              Login
+              LOGIN
             </button>
           )}
         </NavLink>
