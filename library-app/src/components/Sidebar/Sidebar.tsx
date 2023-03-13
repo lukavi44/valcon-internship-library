@@ -5,8 +5,12 @@ import account from '../../assets/icons/account.png' // loader comp za slike
 import showMore from '../../assets/icons/showMore.png'
 import { useNavigate } from 'react-router-dom'
 import { MainLayoutProps } from '../Layout/MainLayout'
+import Modal from '../Layout/Modal'
+import ManageBookForm from '../Books/BooksList/ManageBookForm'
 
 const Sidebar = ({ isLoggedIn }: MainLayoutProps) => {
+  const [isModalOpened, setIsModalOpened] = useState(false)
+
   const [adminOptions, setAdminOptions] = useState(false)
 
   const navigateTo = useNavigate()
@@ -19,37 +23,41 @@ const Sidebar = ({ isLoggedIn }: MainLayoutProps) => {
     <React.Fragment>
       <nav className={styles.header}>
         <div className={styles['btn-holder']} onClick={handleHomeNavigation}>
-          <a>
+          <button>
             <img src={home} alt='' />
-          </a>
+          </button>
         </div>
         {isLoggedIn && (
           <div className={styles['btn-holder']}>
-            <a>
+            <button>
               <img src={account} alt='' />
-            </a>
+            </button>
           </div>
         )}
         {isLoggedIn && (
           <div className={styles['btn-holder']} onClick={() => setAdminOptions(!adminOptions)}>
-            <a>
+            <button>
               <img src={showMore} alt='' />
-            </a>
+            </button>
           </div>
         )}
         {adminOptions && (
           <nav className={styles.sidebar}>
             <div className={styles['btn-holder']}>
-              <a>
-                <img src={account} alt='admin option1' />
-              </a>
-            </div>
-            <div className={styles['btn-holder']}>
-              <a>
-                <img src={account} alt='admin option2' />
-              </a>
+              <button
+                className={styles['add-new-book']}
+                type='submit'
+                onClick={() => setIsModalOpened(true)}
+              >
+                Add New Book +
+              </button>
             </div>
           </nav>
+        )}
+        {isModalOpened && (
+          <Modal onClose={() => setIsModalOpened(false)}>
+            <ManageBookForm />
+          </Modal>
         )}
       </nav>
     </React.Fragment>
