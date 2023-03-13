@@ -19,7 +19,7 @@
   border-bottom: 1px solid black;
   align-items: center;
   gap: 1rem;
-  padding: 2.2rem;
+  padding: 0 2.2rem 2.2rem 2.2rem;
 }
 
 .form-group:last-of-type {
@@ -28,6 +28,11 @@
 
 .form-group input {
   background: rgba(142, 140, 140, 0.506);
+}
+
+.form-group:last-of-type {
+  display: flex;
+  flex-direction: column;
 }
 .form-submit-btn {
   width: 50%;
@@ -39,6 +44,6 @@
 }
 
 .select-authors-dropdown {
-  width: 60%;
+  width: 100%;
   height: 50%;
 }

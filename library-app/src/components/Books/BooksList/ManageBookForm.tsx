@@ -142,7 +142,7 @@ const ManageBookForm = () => {
           id='authorIds'
           options={authors}
           defaultValue={formData.AuthorIds}
-          getOptionLabel={(option) => `${option.FirstName} ${option.LastName}`}
+          getOptionLabel={(option) => `${option.Firstname} ${option.Lastname}`}
           onChange={onChangeAuthors}
           isMulti
           getOptionValue={(option: Author) => option.Id.toString()}

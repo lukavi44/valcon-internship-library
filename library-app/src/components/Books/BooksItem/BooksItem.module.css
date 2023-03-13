@@ -1,7 +1,13 @@
-.book-img {
-  width: 50%;
-}
-
 .book-holder {
   padding: 2rem;
+  display: flex;
+  gap: 2rem;
+}
+
+.img-holder {
+  box-shadow: 20px 20px 23px #e3d9c7;
+}
+.book-img {
+  width: 180px;
+  height: 200px;
 }

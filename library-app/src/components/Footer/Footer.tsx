@@ -5,9 +5,13 @@ import showMore from '../../assets/icons/showMore.png'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { MainLayoutProps } from '../Layout/MainLayout'
+import Modal from '../Layout/Modal'
+import ManageBookForm from '../Books/BooksList/ManageBookForm'
 
 export const Footer = ({ isLoggedIn }: MainLayoutProps) => {
   const [adminOptions, setAdminOptions] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
+
   const navigateTo = useNavigate()
 
   const closeAdminOptions = () => {
@@ -53,12 +57,19 @@ export const Footer = ({ isLoggedIn }: MainLayoutProps) => {
             </button>
           </div>
           <div className={styles['btn-holder']}>
-            <button>
-              <img src={account} alt='' />
+            <button
+              className={styles['add-new-book']}
+              type='submit'
+              onClick={() => setIsOpen(true)}
+            >
+              Add New Book +
             </button>
           </div>
         </nav>
       )}
+      <Modal open={isOpen} onClose={() => setIsOpen(false)}>
+        <ManageBookForm />
+      </Modal>
     </footer>
   )
 }

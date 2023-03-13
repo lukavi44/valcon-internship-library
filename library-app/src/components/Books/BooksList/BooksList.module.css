@@ -30,6 +30,7 @@
     flex-direction: row;
   }
   .background {
-    width: 86.5%;
+    width: 92%;
+    height: 58vh;
   }
 }

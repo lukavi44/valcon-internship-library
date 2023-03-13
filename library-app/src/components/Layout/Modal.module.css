@@ -16,9 +16,15 @@
   background-color: #fff;
   padding: 50px;
   z-index: 1000;
+  height: 90vh;
 }
 .modal-close-btn {
   position: fixed;
   top: 0;
   right: 0;
+}
+@media screen and (min-width: 426px) {
+  .modal {
+    width: 30%;
+  }
 }
