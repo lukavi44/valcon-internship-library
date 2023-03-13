@@ -67,9 +67,11 @@ export const Footer = ({ isLoggedIn }: MainLayoutProps) => {
           </div>
         </nav>
       )}
-      <Modal open={isOpen} onClose={() => setIsOpen(false)}>
-        <ManageBookForm />
-      </Modal>
+      {isOpen && (
+        <Modal onClose={() => setIsOpen(false)}>
+          <ManageBookForm />
+        </Modal>
+      )}
     </footer>
   )
 }

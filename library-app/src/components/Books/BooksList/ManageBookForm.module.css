@@ -3,6 +3,7 @@
   flex-direction: column;
   height: 100%;
   justify-content: flex-start;
+  overflow: scroll;
 }
 .form-group {
   display: flex;

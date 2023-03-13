@@ -47,13 +47,15 @@ const Header = ({
         className={styles['header-container']}
         style={{ visibility: isVisible ? 'visible' : 'hidden' }}
       >
-        <input type='search' name='search' id='search' className={styles.input} />
-        <button className={styles['search-btn']}>
-          <img src={search} alt='' className={styles['search-img']} />
-        </button>
-        <button className={styles.sort}>
-          <img src={sort} alt='' />
-        </button>
+        <div className={styles['header-left']}>
+          <button className={styles['search-btn']}>
+            <img src={search} alt='' className={styles['search-img']} />
+          </button>
+          <input type='search' name='search' id='search' className={styles.input} />
+          <button className={styles.sort}>
+            <img src={sort} alt='' />
+          </button>
+        </div>
         <NavLink to='login'>
           {isLoggedIn && (
             <button className={styles['login-btn']} type='button' onClick={handleLogout}>

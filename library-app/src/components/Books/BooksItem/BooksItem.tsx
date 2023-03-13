@@ -28,11 +28,13 @@ const BooksItem = ({ Book }: BookProps) => {
         <div className={styles['about-book']}>
           <h2>{Book.Title}</h2>
           <p>{Book.Description}</p>
-
-          <div>
-            {Book.Authors &&
-              Book.Authors.map((Author) => <p key={Author.Id}>{Author.Firstname}</p>)}
-          </div>
+          <label>Author(s):</label>
+          {Book.Authors &&
+            Book.Authors.map((Author) => (
+              <p key={Author.Id}>
+                {Author.Firstname} {Author.Lastname}
+              </p>
+            ))}
         </div>
       </div>
     </Card>
