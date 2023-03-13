@@ -3,10 +3,10 @@ import { FormEvent, useEffect, useState } from 'react'
 import { postBookRequest } from '../../../services/BooksServices'
 import styles from './ManageBookForm.module.css'
 import Select, { MultiValue } from 'react-select'
-import BookBodyData from '../../../models/bookData.model'
 import Author from '../../../models/author.model'
 import getAuthors from '../../../services/AuthorServices'
 import placeholder from '../../../assets/placeholderImg/placeholder.jpeg'
+import { BookBodyData } from '../../../models/bookData.model'
 
 const ManageBookForm = () => {
   const [authors, setAuthors] = useState<Author[]>([])

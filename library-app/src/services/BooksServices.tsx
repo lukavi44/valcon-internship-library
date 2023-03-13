@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios'
-import BookBodyData from '../models/bookData.model'
+import { BookBodyData, BookBodyDataGet } from '../models/bookData.model'
 import axiosInstance from './axiosConfig'
 
 export const postBookRequest = (body: FormData): Promise<AxiosResponse> => {
@@ -11,7 +11,7 @@ export const postBookRequest = (body: FormData): Promise<AxiosResponse> => {
 }
 
 export const getBooksRequest = (): Promise<AxiosResponse> => {
-  return axiosInstance.get<BookBodyData>('api/Books', {
+  return axiosInstance.get<BookBodyDataGet>('api/Books', {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
     },

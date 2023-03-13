@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { FormEvent, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { setLocalStorage } from '../../../helpers/manageLocalStorage'
 import LoginRequest, { LoginRequestData } from '../../../services/auth'
 import MainLayout from '../../Layout/MainLayout'
 import styles from './Login.module.css'
@@ -22,11 +23,12 @@ const Login = () => {
   }, [])
 
   const handleEmailChange = ({ currentTarget }: FormEvent<HTMLInputElement>) => {
-    if (currentTarget.value.trim() === '') {
+    if (currentTarget.value === '') {
       setEnteredEmailIsValid(false)
+    } else {
+      setEnteredEmailIsValid(true)
     }
     setEnteredEmail(currentTarget.value)
-    setEnteredEmailIsValid(true)
   }
 
   const handleOnBlurEmail = () => {
@@ -57,13 +59,11 @@ const Login = () => {
       password: enteredPassword,
     }
     if (!enteredEmailIsValid || !enteredPasswordIsValid) {
-      console.log('greska')
+      return
     } else {
       await LoginRequest(formData)
         .then(({ data }) => {
-          localStorage.setItem('accessToken', data.AccessToken)
-          localStorage.setItem('refreshToken', data.RefreshToken)
-          localStorage.setItem('expiration', data.Expiration)
+          setLocalStorage(data)
           navigateTo('/')
           console.log(data)
         })
@@ -81,10 +81,9 @@ const Login = () => {
   const unmatchedCredentials = invalidCredentials
   const unmatchedCredentialsClasses = unmatchedCredentials ? styles['invalid-credentials'] : ''
 
-  const emailInputIsInvalid = !enteredEmailIsValid
-  const emailInputClasses = emailInputIsInvalid
-    ? `${styles['form-group']} ${styles['invalid']}`
-    : styles['form-group']
+  const emailInputClasses = enteredEmailIsValid
+    ? styles['form-group']
+    : `${styles['form-group']} ${styles['invalid']}`
 
   const passwordInputIsInvalid = !enteredPasswordIsValid
   const passwordInputClasses = passwordInputIsInvalid
@@ -98,7 +97,7 @@ const Login = () => {
         <form className={styles['form']} onSubmit={formSubmissionHandler}>
           <div className={emailInputClasses}>
             <label htmlFor='email'>
-              {emailInputIsInvalid ? 'Please enter email' : 'Email'}
+              {!enteredEmailIsValid ? 'Please enter email' : 'Email'}
               {}
             </label>
             <input

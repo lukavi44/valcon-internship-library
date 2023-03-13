@@ -1,23 +1,23 @@
+import { BookBodyDataGet } from '../../../models/bookData.model'
 import Card from '../../UI/Card'
 import styles from './BooksItem.module.css'
-import { BookBodyDataGet } from '../BooksList/BooksList'
 
 export interface BookProps {
-  book: BookBodyDataGet
+  Book: BookBodyDataGet
 }
 
-const BooksItem = ({ book }: BookProps) => {
+const BooksItem = ({ Book }: BookProps) => {
   return (
     <Card>
       <div className={styles['book-holder']}>
-        <img src={`data:image/png;base64, ${book.Cover}`} alt='' className={styles['book-img']} />
+        <img src={`data:image/png;base64, ${Book.Cover}`} alt='' className={styles['book-img']} />
         <div className={styles['about-book']}>
-          <h2>{book.Title}</h2>
-          <p>{book.Description}</p>
+          <h2>{Book.Title}</h2>
+          <p>{Book.Description}</p>
 
           <div>
-            {book.Authors &&
-              book.Authors.map((Author) => <p key={Author.Id}>{Author.FirstName}</p>)}
+            {Book.Authors &&
+              Book.Authors.map((Author) => <p key={Author.Id}>{Author.FirstName}</p>)}
           </div>
         </div>
       </div>

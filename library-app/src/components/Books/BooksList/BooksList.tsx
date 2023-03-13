@@ -4,33 +4,11 @@ import { useEffect, useState } from 'react'
 import Modal from '../../Layout/Modal'
 import ManageBookForm from './ManageBookForm'
 import { getBooksRequest } from '../../../services/BooksServices'
-import Author from '../../../models/author.model'
-
-export interface BookBodyDataGet {
-  Id: number
-  Title: string
-  Description: string
-  Isbn: string
-  Quantity: number
-  Cover: string
-  PublishDate: string
-  Authors: Author[]
-}
+import { BookBodyDataGet } from '../../../models/bookData.model'
 
 const BooksList = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const [books, setBooks] = useState<BookBodyDataGet[]>([
-    {
-      Id: 0,
-      Title: '',
-      Description: '',
-      Isbn: '',
-      Quantity: 0,
-      Cover: '',
-      PublishDate: '',
-      Authors: [],
-    },
-  ])
+  const [books, setBooks] = useState<BookBodyDataGet[]>([])
 
   useEffect(() => {
     fetchData()
@@ -40,7 +18,6 @@ const BooksList = () => {
     try {
       const responseData = await getBooksRequest()
       setBooks(responseData.data)
-      return responseData
     } catch (error) {
       console.error(error)
     }
@@ -55,7 +32,7 @@ const BooksList = () => {
       </Modal>
       <div className={styles['books-wrap']}>
         {!books && <p>Nema dostupnih knjiga</p>}
-        {books && books.map((book) => <BooksItem key={book.Id} book={book} />)}
+        {books && books.map((book) => <BooksItem key={book.Id} Book={book} />)}
       </div>
     </div>
   )

@@ -5,10 +5,11 @@ import Login from './components/pages/Login/Login'
 import React, { useEffect, useState } from 'react'
 import PrivateRoutes from './router/PrivateRoutes'
 import BookDetails from './components/pages/BookDetails'
+import { getAccessToken } from './helpers/manageLocalStorage'
 
 function App() {
-  const [accessToken, setAccessToken] = useState(localStorage.getItem('accessToken'))
-  const token = localStorage.getItem('accessToken')
+  const [accessToken, setAccessToken] = useState<string | null>('')
+  const token = getAccessToken()
   useEffect(() => {
     return setAccessToken(token)
   }, [])

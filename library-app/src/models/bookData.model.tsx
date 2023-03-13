@@ -1,6 +1,6 @@
 import Author from './author.model'
 
-export default interface BookBodyData {
+export interface BookBodyData {
   Id: number
   Title: string
   Description: string
@@ -9,4 +9,15 @@ export default interface BookBodyData {
   Cover: Blob
   PublishDate: string
   AuthorIds: Author[]
+}
+
+export interface BookBodyDataGet {
+  Id: number
+  Title: string
+  Description: string
+  Isbn: string
+  Quantity: number
+  Cover: string
+  PublishDate: string
+  Authors: Author[]
 }

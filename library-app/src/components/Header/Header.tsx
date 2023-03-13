@@ -3,6 +3,7 @@ import search from '../../assets/icons/search.png'
 import styles from './Header.module.css'
 import sort from '../../assets/icons/sort.png'
 import { NavLink } from 'react-router-dom'
+import { deleteLocalStorage } from '../../helpers/manageLocalStorage'
 
 const Header = ({
   isLoggedIn,
@@ -15,9 +16,7 @@ const Header = ({
   const [isVisible, setIsVisible] = useState(true)
 
   const handleLogout = () => {
-    if (localStorage.getItem('accessToken')) {
-      localStorage.clear()
-    }
+    deleteLocalStorage()
     setIsLoggedIn(false)
   }
 
