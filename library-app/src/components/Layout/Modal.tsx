@@ -4,13 +4,13 @@ import styles from './Modal.module.css'
 const portalDiv = document.getElementById('portal') as HTMLElement
 
 export interface ModalProps {
-  open: boolean
+  // open: boolean
   children: React.ReactNode
   onClose: React.MouseEventHandler
 }
 
-const Modal = ({ open, children, onClose }: ModalProps) => {
-  if (!open) return null
+const Modal = ({ children, onClose }: ModalProps) => {
+  // if (!open) return null
   return ReactDOM.createPortal(
     <>
       <div className={styles.overlay} onClick={onClose} />

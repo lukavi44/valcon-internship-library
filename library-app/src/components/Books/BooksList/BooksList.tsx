@@ -26,10 +26,11 @@ const BooksList = () => {
   return (
     <div className={styles.wrapp}>
       <div className={styles.background}></div>
-
-      <Modal open={isOpen} onClose={() => setIsOpen(false)}>
-        <ManageBookForm />
-      </Modal>
+      {isOpen && (
+        <Modal onClose={() => setIsOpen(false)}>
+          <ManageBookForm />
+        </Modal>
+      )}
       <div className={styles['books-wrap']}>
         {books.length === 0 ? (
           <p>No available books</p>

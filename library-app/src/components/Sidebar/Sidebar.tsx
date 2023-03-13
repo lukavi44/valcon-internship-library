@@ -55,7 +55,7 @@ const Sidebar = ({ isLoggedIn }: MainLayoutProps) => {
           </nav>
         )}
         {isModalOpened && (
-          <Modal open={isModalOpened} onClose={() => setIsModalOpened(false)}>
+          <Modal onClose={() => setIsModalOpened(false)}>
             <ManageBookForm />
           </Modal>
         )}
