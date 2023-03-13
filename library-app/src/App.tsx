@@ -4,8 +4,8 @@ import { Route, Routes } from 'react-router-dom'
 import Login from './components/pages/Login/Login'
 import React, { useEffect, useState } from 'react'
 import PrivateRoutes from './router/PrivateRoutes'
-import BookDetails from './components/pages/BookDetails'
 import { getAccessToken } from './helpers/manageLocalStorage'
+import BookDetails from './components/pages/BookDetails/BooksDetails'
 
 function App() {
   const [accessToken, setAccessToken] = useState<string | null>('')

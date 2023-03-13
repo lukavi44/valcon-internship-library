@@ -15,6 +15,11 @@ const BooksItem = ({ Book }: BookProps) => {
     setCoverPlaceholder(imgPlaceholder)
   }, [])
 
+  // const editBookHandler = (event: MouseEvent) => {
+  //   event.preventDefault()
+  //   setIsEditBook(!isEditBook)
+  // }
+
   return (
     <Card>
       <div className={styles['book-holder']}>
