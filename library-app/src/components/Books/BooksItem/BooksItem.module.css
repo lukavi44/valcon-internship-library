@@ -26,3 +26,22 @@
 label {
   font-weight: bold;
 }
+.actions-btn-holder {
+  display: flex;
+  justify-content: space-around;
+  padding: 1rem 0;
+}
+
+.action-btn {
+  padding: 1rem 2rem;
+  background: none;
+}
+.action-btn#edit {
+  /* background-color: blue; */
+}
+.action-btn#delete {
+  /* background-color: red; */
+}
+.action-btn#rent {
+  /* background-color: green; */
+}

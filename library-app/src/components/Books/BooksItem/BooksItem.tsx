@@ -27,7 +27,14 @@ const BooksItem = ({ Book }: BookProps) => {
         </div>
         <div className={styles['about-book']}>
           <h2>{Book.Title}</h2>
-          <p>{Book.Description}</p>
+          <div className={styles['published-date']}>
+            <p>Published:</p>
+            <p>{Book.PublishDate}</p>
+          </div>
+          <p>
+            {Book.Description?.substring(0, 50)}
+            {Book.Description?.length > 50 ? '...' : ''}
+          </p>
           <label>Author(s):</label>
           {Book.Authors &&
             Book.Authors.map((Author) => (
@@ -36,6 +43,17 @@ const BooksItem = ({ Book }: BookProps) => {
               </p>
             ))}
         </div>
+      </div>
+      <div className={styles['actions-btn-holder']}>
+        <button className={styles['action-btn']} id={styles.edit}>
+          Edit
+        </button>
+        <button className={styles['action-btn']} id={styles.delete}>
+          Delete
+        </button>
+        <button className={styles['action-btn']} id={styles.rent}>
+          Rent
+        </button>
       </div>
     </Card>
   )

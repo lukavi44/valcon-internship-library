@@ -16,8 +16,6 @@ export const setLocalStorage = ({ AccessToken, RefreshToken, Expiration }: Local
 
 export const getAccessToken = () => {
   return localStorage.getItem(accessTokenKey)
-  //   localStorage.getItem(refreshTokenKey)
-  //     localStorage.getItem(expirationKey)
 }
 
 export const deleteLocalStorage = () => {

@@ -1,4 +1,4 @@
-import Author from './author.model'
+import { Author, AuthorResponse } from './author.model'
 
 export interface BookBodyData {
   Id: number
@@ -19,5 +19,5 @@ export interface BookBodyDataGet {
   Quantity: number
   Cover: string
   PublishDate: string
-  Authors: Author[]
+  Authors: AuthorResponse[]
 }

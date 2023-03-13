@@ -3,10 +3,10 @@ import { FormEvent, useCallback, useEffect, useState } from 'react'
 import { postBookRequest } from '../../../services/BooksServices'
 import styles from './ManageBookForm.module.css'
 import Select, { MultiValue } from 'react-select'
-import Author from '../../../models/author.model'
 import getAuthors from '../../../services/AuthorServices'
 import placeholder from '../../../assets/placeholderImg/placeholder.jpeg'
 import { BookBodyData } from '../../../models/bookData.model'
+import { Author } from '../../../models/author.model'
 
 const ManageBookForm = () => {
   const [authors, setAuthors] = useState<Author[]>([])
@@ -62,7 +62,7 @@ const ManageBookForm = () => {
       form.append('PublishDate', formData.PublishDate)
       form.append('Quantity', formData.Quantity.toString())
       form.append('Title', formData.Title)
-      formData.AuthorIds.forEach((author) => form.append('authorIds', author.Id.toString()))
+      formData.AuthorIds.forEach((author) => form.append('AuthorIds', author.Id.toString()))
 
       await postBookRequest(form)
     } catch (error) {
@@ -74,7 +74,7 @@ const ManageBookForm = () => {
   }
 
   const onChangeAuthors = (newAuthors: MultiValue<Author>) => {
-    setFormData((prev) => ({ ...prev, authorIds: newAuthors.map((authors) => authors) }))
+    setFormData((prev) => ({ ...prev, AuthorIds: newAuthors.map((authors) => authors) }))
   }
 
   return (
@@ -95,11 +95,12 @@ const ManageBookForm = () => {
       </div>
       <div className={styles['form-group']}>
         <label htmlFor='description'>Add Description</label>
-        <input
-          type='text'
+        <textarea
           id='description'
           name='description'
           defaultValue={formData.Description}
+          cols={30}
+          rows={6}
           onChange={(e) => setFormData((prev) => ({ ...prev, Description: e.target.value }))}
         />
       </div>
@@ -142,7 +143,7 @@ const ManageBookForm = () => {
           id='authorIds'
           options={authors}
           defaultValue={formData.AuthorIds}
-          getOptionLabel={(option) => `${option.Firstname} ${option.Lastname}`}
+          getOptionLabel={(option) => `${option.FirstName} ${option.LastName}`}
           onChange={onChangeAuthors}
           isMulti
           getOptionValue={(option: Author) => option.Id.toString()}
