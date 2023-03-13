@@ -1,27 +1,17 @@
-.header-container {
+.search-holder {
   width: 100%;
   display: flex;
   background-color: #d9b97e;
   padding: 29px 0;
-  justify-content: flex-end;
+  justify-content: center;
   gap: 1rem;
   border-bottom: 2px solid black;
   position: sticky;
   top: 0;
-  z-index: 1;
-}
-
-.header-left {
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  gap: 1rem;
 }
 .input {
   padding: 1rem;
-  padding-inline-start: 4rem;
   border-radius: 2rem;
-  width: 100%;
 }
 .input:focus {
   width: 100%;
@@ -29,25 +19,20 @@
 .search-btn {
   background: none;
   border: none;
-  margin-right: -56px;
+  margin-left: -70px;
   padding: 0;
-  z-index: 2;
 }
 .search-img {
   height: 20px;
 }
 .sort {
   margin-left: 2rem;
-  background-color: #e3d9c7;
-  border: 2px solid #f6f6f6;
+  background-color: #98a0a6;
 }
 .login-btn {
   height: 100%;
-  background: none;
+  background-color: #98a0a6;
   padding: 0 2rem;
-  color: #fff;
-  border: none;
-  font-size: 1.5rem;
 }
 
 @media screen and (min-width: 426px) {

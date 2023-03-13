@@ -3,30 +3,29 @@
 }
 @media only screen and (min-width: 426px) {
   .header {
+    background-color: #d9b97e;
     width: 230px;
     display: flex;
     flex-direction: column;
     height: 100vh;
   }
   .btn-holder {
-    display: flex;
-    align-items: center;
     padding: 2rem 0;
-    justify-content: center;
+    background-color: #bf8845;
+
+    border-bottom: 2px solid black;
   }
   .btn-holder:active {
-    background-color: #f0ebe781;
-  }
-  .btn-holder button {
-    background: none;
-    border: none;
+    background-color: #592e15;
   }
   .sidebar {
     display: flex;
     flex-direction: column;
   }
-  .add-new-book {
-    width: 50%;
-    text-transform: uppercase;
+  .list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
   }
 }

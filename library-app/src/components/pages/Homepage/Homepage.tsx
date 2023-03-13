@@ -5,7 +5,7 @@ import MainLayout from '../../Layout/MainLayout'
 const Homepage = () => {
   return (
     <React.Fragment>
-      <MainLayout isLoggedIn>
+      <MainLayout>
         <BooksList />
       </MainLayout>
     </React.Fragment>
