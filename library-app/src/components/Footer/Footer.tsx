@@ -21,25 +21,25 @@ export const Footer = ({ isLoggedIn }: MainLayoutProps) => {
   return (
     <footer className={styles.footer}>
       <div className={styles['btn-holder']} onClick={handleHomeNavigation}>
-        <a>
+        <button>
           <img src={home} alt='' />
-        </a>
+        </button>
       </div>
 
       {isLoggedIn && (
         <div className={styles['btn-holder']}>
-          <a>
+          <button>
             <img src={account} alt='' />
-          </a>
+          </button>
         </div>
       )}
-      {adminOptions && (
-        <div className={styles['btn-holder']}>
-          <a onClick={() => setAdminOptions(!adminOptions)}>
-            <img src={showMore} alt='' />
-          </a>
-        </div>
-      )}
+
+      <div className={styles['btn-holder']}>
+        <button onClick={() => setAdminOptions(!adminOptions)}>
+          <img src={showMore} alt='' />
+        </button>
+      </div>
+
       {adminOptions && (
         <nav className={styles.sidebar}>
           <div className={styles['btn-holder']}>
@@ -48,14 +48,14 @@ export const Footer = ({ isLoggedIn }: MainLayoutProps) => {
             </button>
           </div>
           <div className={styles['btn-holder']}>
-            <a>
+            <button>
               <img src={account} alt='' />
-            </a>
+            </button>
           </div>
           <div className={styles['btn-holder']}>
-            <a>
+            <button>
               <img src={account} alt='' />
-            </a>
+            </button>
           </div>
         </nav>
       )}

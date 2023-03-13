@@ -4,9 +4,9 @@ import styles from './Modal.module.css'
 const portalDiv = document.getElementById('portal') as HTMLElement
 
 export interface ModalProps {
-  open: any
-  children: any
-  onClose: any
+  open: boolean
+  children: React.ReactNode
+  onClose: React.MouseEventHandler
 }
 
 const Modal = ({ open, children, onClose }: ModalProps) => {

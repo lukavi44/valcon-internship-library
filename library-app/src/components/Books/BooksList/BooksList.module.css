@@ -15,10 +15,10 @@
 
 .background {
   height: 45vh;
+  width: 100%;
   background-color: #d9b97e;
   position: fixed;
   top: 0;
-  width: 86.5%;
   z-index: -1;
   border-bottom-left-radius: 30%;
 }
@@ -29,11 +29,7 @@
     justify-content: space-evenly;
     flex-direction: row;
   }
-  /* .button-holder {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    padding: 1rem;
-    gap: 2rem;
-  } */
+  .background {
+    width: 86.5%;
+  }
 }

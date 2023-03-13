@@ -8,10 +8,12 @@
   border-bottom: 2px solid black;
   position: sticky;
   top: 0;
+  z-index: 1;
 }
 .input {
   padding: 1rem;
   border-radius: 2rem;
+  width: 100%;
 }
 .input:focus {
   width: 100%;

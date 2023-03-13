@@ -1,6 +1,5 @@
 import BooksItem from '../BooksItem/BooksItem'
 import styles from './BooksList.module.css'
-import sort from '../../../assets/icons/sort.png'
 import { useEffect, useState } from 'react'
 import Modal from '../../Layout/Modal'
 import ManageBookForm from './ManageBookForm'

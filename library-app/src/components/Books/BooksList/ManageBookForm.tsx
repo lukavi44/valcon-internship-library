@@ -40,7 +40,7 @@ const ManageBookForm = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const authorsData = await getAuthors().then((response) => {
+      await getAuthors().then((response) => {
         setAuthors(response.data)
       })
     }
@@ -64,7 +64,7 @@ const ManageBookForm = () => {
       form.append('Title', formData.Title)
       formData.AuthorIds.forEach((author) => form.append('authorIds', author.Id.toString()))
 
-      const data = await postBookRequest(form)
+      await postBookRequest(form)
     } catch (error) {
       if (axios.isAxiosError(error)) {
         if (error.response?.status === 401) {
