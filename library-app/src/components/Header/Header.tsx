@@ -3,7 +3,6 @@ import search from '../../assets/icons/search.png'
 import styles from './Header.module.css'
 import sort from '../../assets/icons/sort.png'
 import { NavLink } from 'react-router-dom'
-import { deleteLocalStorage } from '../../helpers/manageLocalStorage'
 
 const Header = ({
   isLoggedIn,
@@ -16,7 +15,9 @@ const Header = ({
   const [isVisible, setIsVisible] = useState(true)
 
   const handleLogout = () => {
-    deleteLocalStorage()
+    if (localStorage.getItem('accessToken')) {
+      localStorage.clear()
+    }
     setIsLoggedIn(false)
   }
 
@@ -44,27 +45,25 @@ const Header = ({
   return (
     <React.Fragment>
       <header
-        className={styles['header-container']}
+        className={styles['search-holder']}
         style={{ visibility: isVisible ? 'visible' : 'hidden' }}
       >
-        <div className={styles['header-left']}>
-          <button className={styles['search-btn']}>
-            <img src={search} alt='' className={styles['search-img']} />
-          </button>
-          <input type='search' name='search' id='search' className={styles.input} />
-          <button className={styles.sort}>
-            <img src={sort} alt='' />
-          </button>
-        </div>
+        <input type='search' name='search' id='search' className={styles.input} />
+        <button className={styles['search-btn']}>
+          <img src={search} alt='' className={styles['search-img']} />
+        </button>
+        <button className={styles.sort}>
+          <img src={sort} alt='' />
+        </button>
         <NavLink to='login'>
           {isLoggedIn && (
-            <button className={styles['login-btn']} type='button' onClick={handleLogout}>
-              LOGOUT
+            <button className={styles['login-btn']} type='submit' onClick={handleLogout}>
+              Logout
             </button>
           )}
           {!isLoggedIn && (
-            <button className={styles['login-btn']} type='button'>
-              LOGIN
+            <button className={styles['login-btn']} type='submit'>
+              Login
             </button>
           )}
         </NavLink>

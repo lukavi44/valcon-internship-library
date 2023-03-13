@@ -5,32 +5,13 @@
   align-items: center;
   width: 100%;
   gap: 1rem;
-  position: relative;
-}
-.books-wrap {
-  gap: 2rem;
-  display: flex;
-  flex-direction: column;
-}
-
-.background {
-  height: 45vh;
-  width: 100%;
-  background-color: #d9b97e;
-  position: fixed;
-  top: 0;
-  z-index: -1;
-  border-bottom-left-radius: 30%;
 }
 
 @media only screen and (min-width: 426px) {
-  .books-wrap {
-    flex-wrap: wrap;
+  .wrapp {
     justify-content: space-evenly;
     flex-direction: row;
-  }
-  .background {
-    width: 90%;
-    height: 58vh;
+    flex-wrap: wrap;
+    gap: 2rem;
   }
 }

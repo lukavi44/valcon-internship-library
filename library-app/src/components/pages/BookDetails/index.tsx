@@ -1,5 +1,5 @@
 const BookDetails = () => {
-  return <div>detalji knjige</div>
+  return <div></div>
 }
 
 export default BookDetails
