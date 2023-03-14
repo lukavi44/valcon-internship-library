@@ -4,11 +4,10 @@ import account from '../../assets/icons/account.png'
 import showMore from '../../assets/icons/showMore.png'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { MainLayoutProps } from '../Layout/MainLayout'
 import Modal from '../Layout/Modal'
 import ManageBookForm from '../Books/BooksList/ManageBookForm'
 
-export const Footer = ({ isLoggedIn }: MainLayoutProps) => {
+export const Footer = ({ isLoggedIn }: any) => {
   const [adminOptions, setAdminOptions] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
 

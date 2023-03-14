@@ -3,6 +3,7 @@ import Card from '../../UI/Card'
 import styles from './BooksItem.module.css'
 import { useEffect, useState } from 'react'
 import imgPlaceholder from '../../../assets/placeholderImg/placeholder.jpeg'
+import { Link } from 'react-router-dom'
 
 export interface BookProps {
   Book: BookBodyDataGet
@@ -14,11 +15,6 @@ const BooksItem = ({ Book }: BookProps) => {
   useEffect(() => {
     setCoverPlaceholder(imgPlaceholder)
   }, [])
-
-  // const editBookHandler = (event: MouseEvent) => {
-  //   event.preventDefault()
-  //   setIsEditBook(!isEditBook)
-  // }
 
   return (
     <Card>
@@ -44,15 +40,17 @@ const BooksItem = ({ Book }: BookProps) => {
           {Book.Authors &&
             Book.Authors.map((Author) => (
               <p key={Author.Id}>
-                {Author.Firstname} {Author.Lastname}
+                {Author.FirstName} {Author.LastName}
               </p>
             ))}
         </div>
       </div>
       <div className={styles['actions-btn-holder']}>
-        <button className={styles['action-btn']} id={styles.edit}>
-          Edit
-        </button>
+        <Link to={'details'}>
+          <button className={styles['action-btn']} id={styles.edit}>
+            Edit
+          </button>
+        </Link>
         <button className={styles['action-btn']} id={styles.delete}>
           Delete
         </button>

@@ -6,9 +6,13 @@ import { NavLink } from 'react-router-dom'
 import { deleteLocalStorage } from '../../helpers/manageLocalStorage'
 
 const Header = ({
+  searchTermValue,
+  setSearchTermValue,
   isLoggedIn,
   setIsLoggedIn,
 }: {
+  searchTermValue: string
+  setSearchTermValue: Dispatch<SetStateAction<string>>
   isLoggedIn: boolean
   setIsLoggedIn: Dispatch<SetStateAction<boolean>>
 }) => {
@@ -19,15 +23,6 @@ const Header = ({
     deleteLocalStorage()
     setIsLoggedIn(false)
   }
-
-  useEffect(() => {
-    if (!localStorage.getItem('accessToken')) {
-      setIsLoggedIn(false)
-    }
-    if (localStorage.getItem('accessToken')) {
-      setIsLoggedIn(true)
-    }
-  }, [setIsLoggedIn])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,6 +36,10 @@ const Header = ({
     return () => window.removeEventListener('scroll', handleScroll)
   }, [position, isVisible])
 
+  function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setSearchTermValue(event.target.value)
+  }
+
   return (
     <React.Fragment>
       <header
@@ -51,7 +50,14 @@ const Header = ({
           <button className={styles['search-btn']}>
             <img src={search} alt='' className={styles['search-img']} />
           </button>
-          <input type='search' name='search' id='search' className={styles.input} />
+          <input
+            type='search'
+            name='search'
+            id='search'
+            className={styles.input}
+            value={searchTermValue}
+            onChange={handleInputChange}
+          />
           <button className={styles.sort}>
             <img src={sort} alt='' />
           </button>

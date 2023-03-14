@@ -1,14 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './Sidebar.module.css'
 import home from '../../assets/icons/home.png'
 import account from '../../assets/icons/account.png' // loader comp za slike
 import showMore from '../../assets/icons/showMore.png'
 import { useNavigate } from 'react-router-dom'
-import { MainLayoutProps } from '../Layout/MainLayout'
 import Modal from '../Layout/Modal'
 import ManageBookForm from '../Books/BooksList/ManageBookForm'
 
-const Sidebar = ({ isLoggedIn }: MainLayoutProps) => {
+const Sidebar = ({ isLoggedIn }: any) => {
   const [isModalOpened, setIsModalOpened] = useState(false)
 
   const [adminOptions, setAdminOptions] = useState(false)
@@ -18,6 +17,10 @@ const Sidebar = ({ isLoggedIn }: MainLayoutProps) => {
   const handleHomeNavigation = () => {
     navigateTo('/')
   }
+
+  useEffect(() => {
+    console.log(isLoggedIn)
+  })
 
   return (
     <React.Fragment>

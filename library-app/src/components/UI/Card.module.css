@@ -1,4 +1,8 @@
 .card {
-  width: 30%;
   border: 1px solid black;
+}
+@media screen and (min-width: 426px) {
+  .card {
+    width: 30%;
+  }
 }

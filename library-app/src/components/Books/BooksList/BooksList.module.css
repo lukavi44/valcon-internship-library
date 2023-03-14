@@ -13,16 +13,6 @@
   flex-direction: column;
 }
 
-.background {
-  height: 45vh;
-  width: 100%;
-  background-color: #d9b97e;
-  position: fixed;
-  top: 0;
-  z-index: -1;
-  border-bottom-left-radius: 30%;
-}
-
 @media only screen and (min-width: 426px) {
   .books-wrap {
     flex-wrap: wrap;

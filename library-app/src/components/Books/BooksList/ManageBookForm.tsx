@@ -3,15 +3,20 @@ import { FormEvent, useCallback, useEffect, useState } from 'react'
 import { postBookRequest } from '../../../services/BooksServices'
 import styles from './ManageBookForm.module.css'
 import Select, { MultiValue } from 'react-select'
-import getAuthors from '../../../services/AuthorServices'
+import { getAuthors, postAuthor } from '../../../services/AuthorServices'
 import placeholder from '../../../assets/placeholderImg/placeholder.jpeg'
 import { BookBodyData } from '../../../models/bookData.model'
-import { Author } from '../../../models/author.model'
+import { Author, AuthorPost } from '../../../models/author.model'
 
 const ManageBookForm = () => {
   const [authors, setAuthors] = useState<Author[]>([])
+  const [isOpenForm, setIsOpenForm] = useState(false)
   const [requestCover, setRequestCover] = useState<Blob>(new Blob())
   const [cover, setCover] = useState('')
+  const [authorForm, setAuthorForm] = useState<AuthorPost>({
+    FirstName: '',
+    LastName: '',
+  })
   const [formData, setFormData] = useState<BookBodyData>({
     Id: 0,
     Title: '',
@@ -22,6 +27,10 @@ const ManageBookForm = () => {
     PublishDate: '',
     AuthorIds: [],
   })
+
+  const openFormhandler = () => {
+    setIsOpenForm(!isOpenForm)
+  }
 
   const handleFileChange = ({ currentTarget }: FormEvent<HTMLInputElement>) => {
     if (currentTarget.files) {
@@ -77,80 +86,135 @@ const ManageBookForm = () => {
     setFormData((prev) => ({ ...prev, AuthorIds: newAuthors.map((authors) => authors) }))
   }
 
-  return (
-    <form className={styles['form-wrapper']} onSubmit={addBookHandler}>
-      <div className={styles['form-group-column']}>
-        <img className={styles['upload-img']} src={cover ? cover : placeholder} alt='' />
-        <input id='cover' name='cover' type='file' onChange={handleFileChange} />
-      </div>
-      <div className={styles['form-group']}>
-        <label htmlFor='title'>Set Title</label>
-        <input
-          type='text'
-          id='title'
-          name='title'
-          defaultValue={formData.Title}
-          onChange={(e) => setFormData((prev) => ({ ...prev, Title: e.target.value }))}
-        />
-      </div>
-      <div className={styles['form-group']}>
-        <label htmlFor='description'>Add Description</label>
-        <textarea
-          id='description'
-          name='description'
-          defaultValue={formData.Description}
-          cols={30}
-          rows={6}
-          onChange={(e) => setFormData((prev) => ({ ...prev, Description: e.target.value }))}
-        />
-      </div>
-      <div className={styles['form-group']}>
-        <label htmlFor='isbn'>ISBN</label>
-        <input
-          id='isbn'
-          name='isbn'
-          type='text'
-          defaultValue={formData.Isbn}
-          onChange={(e) => setFormData((prev) => ({ ...prev, Isbn: e.target.value }))}
-        />
-      </div>
-      <div className={styles['form-group']}>
-        <label htmlFor='quantity'>Quantity</label>
-        <input
-          id='quantity'
-          name='quantity'
-          type='number'
-          defaultValue={formData.Quantity}
-          onChange={(e) => setFormData((prev) => ({ ...prev, Quantity: +e.target.value }))}
-        />
-      </div>
-      <div className={styles['form-group']}>
-        <label htmlFor='publishDate'>Publish Date</label>
-        <input
-          id='publishDate'
-          name='publishDate'
-          type='date'
-          defaultValue={formData.PublishDate}
-          onChange={(e) => setFormData((prev) => ({ ...prev, PublishDate: e.target.value }))}
-        />
-      </div>
+  const addAuthorHandler = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    try {
+      const form = new FormData()
 
-      <div className={styles['form-group']}>
-        <label htmlFor='authorIds'>Author(s)</label>
-        <Select
-          className={styles['select-authors-dropdown']}
-          name='authorIds'
-          id='authorIds'
-          options={authors}
-          defaultValue={formData.AuthorIds}
-          getOptionLabel={(option) => `${option.FirstName} ${option.LastName}`}
-          onChange={onChangeAuthors}
-          isMulti
-          getOptionValue={(option: Author) => option.Id.toString()}
-        />
-      </div>
-      <button className={styles['form-submit-btn']}>Submit Book</button>
-    </form>
+      form.append('FirstName', authorForm.FirstName)
+      form.append('LastName', authorForm.LastName)
+      postAuthor(form)
+      console.log('autor dodat', form)
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response?.status === 401) {
+        console.log('neautorizovan')
+      }
+      return
+    }
+  }
+
+  return (
+    <>
+      <form className={styles['form-wrapper']} onSubmit={addBookHandler}>
+        <div className={styles['form-group-column']}>
+          <img className={styles['upload-img']} src={cover ? cover : placeholder} alt='' />
+          <input id='cover' name='cover' type='file' onChange={handleFileChange} />
+        </div>
+        <div className={styles.bottom}>
+          <div className={styles.left}>
+            <div className={styles['form-group']}>
+              <label htmlFor='title'>Set Title</label>
+              <input
+                type='text'
+                id='title'
+                name='title'
+                defaultValue={formData.Title}
+                onChange={(e) => setFormData((prev) => ({ ...prev, Title: e.target.value }))}
+              />
+            </div>
+            <div className={styles['form-group']}>
+              <label htmlFor='description'>Add Description</label>
+              <textarea
+                id='description'
+                name='description'
+                defaultValue={formData.Description}
+                onChange={(e) => setFormData((prev) => ({ ...prev, Description: e.target.value }))}
+              />
+            </div>
+            <div className={styles['form-group']}>
+              <label htmlFor='isbn'>ISBN</label>
+              <input
+                id='isbn'
+                name='isbn'
+                type='text'
+                defaultValue={formData.Isbn}
+                onChange={(e) => setFormData((prev) => ({ ...prev, Isbn: e.target.value }))}
+              />
+            </div>
+          </div>
+          <div className={styles.right}>
+            <div className={styles['form-group']}>
+              <label htmlFor='quantity'>Quantity</label>
+              <input
+                id='quantity'
+                name='quantity'
+                type='number'
+                defaultValue={formData.Quantity}
+                onChange={(e) => setFormData((prev) => ({ ...prev, Quantity: +e.target.value }))}
+              />
+            </div>
+            <div className={styles['form-group']}>
+              <label htmlFor='publishDate'>Publish Date</label>
+              <input
+                id='publishDate'
+                name='publishDate'
+                type='date'
+                defaultValue={formData.PublishDate}
+                onChange={(e) => setFormData((prev) => ({ ...prev, PublishDate: e.target.value }))}
+              />
+            </div>
+
+            <div className={styles['form-group']}>
+              <label htmlFor='authorIds'>Author(s)</label>
+              <Select
+                className={styles['select-authors-dropdown']}
+                name='authorIds'
+                id='authorIds'
+                options={authors}
+                defaultValue={formData.AuthorIds}
+                getOptionLabel={(option) => `${option.FirstName} ${option.LastName}`}
+                onChange={onChangeAuthors}
+                isMulti
+                getOptionValue={(option: Author) => option.Id.toString()}
+              />
+              {!isOpenForm && (
+                <button onClick={openFormhandler} className={styles['add-btn']}>
+                  Add New Author
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+        {!isOpenForm && <button className={styles['form-submit-btn']}>Submit Book</button>}
+      </form>
+      {isOpenForm && (
+        <form onSubmit={addAuthorHandler} className={styles['add-author-form']}>
+          <button onClick={() => setIsOpenForm(false)} type='button'>
+            x
+          </button>
+          <h2>Add New Author</h2>
+          <div className={styles['form-group']}>
+            <input
+              type='text'
+              name='FirstName'
+              onChange={(e) => setAuthorForm((prev) => ({ ...prev, FirstName: e.target.value }))}
+              placeholder='first name'
+            />
+          </div>
+          <div className={styles['form-group']}>
+            <input
+              type='text'
+              name='LastName'
+              onChange={(e) => setAuthorForm((prev) => ({ ...prev, LastName: e.target.value }))}
+              placeholder='last name'
+            />
+          </div>
+          <button type='submit' className={styles['add-btn']}>
+            ADD AUTHOR
+          </button>
+        </form>
+      )}
+    </>
   )
 }
 

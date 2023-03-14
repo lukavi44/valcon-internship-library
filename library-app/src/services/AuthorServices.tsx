@@ -1,8 +1,8 @@
 import { AxiosResponse } from 'axios'
-import { AuthorResponse } from '../models/author.model'
+import { AuthorPost, AuthorResponse } from '../models/author.model'
 import axiosInstance from './axiosConfig'
 
-const getAuthors = async (): Promise<AxiosResponse> => {
+export const getAuthors = async (): Promise<AxiosResponse> => {
   return axiosInstance.get<AuthorResponse[]>('api/Authors', {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
@@ -10,4 +10,12 @@ const getAuthors = async (): Promise<AxiosResponse> => {
   })
 }
 
-export default getAuthors
+export const postAuthor = async (body: FormData): Promise<AxiosResponse> => {
+  return axiosInstance.post<AuthorPost>('api/Authors', body, {
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+    },
+  })
+}

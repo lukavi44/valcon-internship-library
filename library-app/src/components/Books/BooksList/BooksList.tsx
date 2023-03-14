@@ -6,6 +6,10 @@ import ManageBookForm from './ManageBookForm'
 import { getBooksRequest } from '../../../services/BooksServices'
 import { BookBodyDataGet } from '../../../models/bookData.model'
 
+interface BookListProps {
+  searchTermValue: string
+}
+
 const BooksList = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [books, setBooks] = useState<BookBodyDataGet[]>([])
@@ -17,7 +21,7 @@ const BooksList = () => {
   const fetchData = async () => {
     try {
       const responseData = await getBooksRequest()
-      setBooks(responseData.data)
+      setBooks(responseData.data.Items)
     } catch (error) {
       console.error(error)
     }
@@ -25,7 +29,6 @@ const BooksList = () => {
 
   return (
     <div className={styles.wrapp}>
-      <div className={styles.background}></div>
       {isOpen && (
         <Modal onClose={() => setIsOpen(false)}>
           <ManageBookForm />

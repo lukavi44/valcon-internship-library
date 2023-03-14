@@ -6,6 +6,11 @@ export interface Author {
 
 export interface AuthorResponse {
   Id: number
-  Firstname: string
-  Lastname: string
+  FirstName: string
+  LastName: string
+}
+
+export interface AuthorPost {
+  FirstName: string
+  LastName: string
 }
